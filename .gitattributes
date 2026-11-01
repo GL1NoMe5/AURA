@@ -1,0 +1,3 @@
+# Linux deployment files must remain runnable after a Windows checkout.
+tools/demo/*.sh text eol=lf
+infra/demo/* text eol=lf

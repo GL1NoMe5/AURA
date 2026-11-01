@@ -9,12 +9,14 @@ import { activePhase, sceneForState } from './runtime/model';
 import { AgentDetails, LiveMetrics, mib, phaseLabels } from './runtime/LivePanels';
 import { RenderCheck } from './scene/renderCheck';
 import OpsApp from './ops/OpsApp';
+import DemoApp from './demo/DemoApp';
 import QuickTour from './QuickTour';
 import '@fontsource/manrope/latin-400.css';
 import '@fontsource/manrope/latin-500.css';
 import '@fontsource/manrope/latin-600.css';
 
 export default function App() {
+  if (location.pathname === '/try' || location.pathname === '/try/') return <DemoApp/>;
   const query = new URLSearchParams(location.search);
   return query.has('preview') || query.get('demo') === '1' ? <LegacyApp/> : <OpsApp/>;
 }

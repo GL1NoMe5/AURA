@@ -45,6 +45,7 @@ ZIP_DATE_TIME = (2026, 1, 1, 0, 0, 0)
 # Exact relative files (POSIX separators) copied into the package.
 ALLOW_FILES = (
     "LICENSE",
+    ".gitattributes",
     "MEDIA_LICENSE.md",
     "THIRD_PARTY_NOTICES.md",
     ".env.example",
@@ -62,6 +63,7 @@ ALLOW_FILES = (
     "docs/RECONCILIATION.md",
     "docs/LIFECYCLE_RECOVERY.md",
     "docs/TARGET_MANAGEMENT.md",
+    "docs/JUDGING_DEMO.md",
     "backend/pyproject.toml",
     "backend/uv.lock",
     "tools/runtime/aura_runtime.py",
@@ -126,6 +128,9 @@ ALLOW_TREES = (
     "backend/aura_agents",
     "backend/aura_ops",
     "backend/aura_worker",
+    "backend/aura_demo",
+    "tools/demo",
+    "infra/demo",
     "backend/tests",
     "frontend/src",
     "frontend/public",

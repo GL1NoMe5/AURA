@@ -1,0 +1,9 @@
+# Replace this reserved example hostname with the actual domain.
+# Match AURA_DEMO_ORIGIN=https://demo.example.com in the private server.env.
+demo.example.com {
+    request_body {
+        max_size 1KB
+    }
+    reverse_proxy 127.0.0.1:8019
+    header Strict-Transport-Security "max-age=86400"
+}

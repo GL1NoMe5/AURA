@@ -1,0 +1,23 @@
+[Unit]
+Description=AURA restricted judging demonstration
+Requires=docker.service
+After=network-online.target docker.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=aura
+Group=aura
+SupplementaryGroups=docker
+WorkingDirectory=/opt/aura
+ExecStart=/opt/aura/backend/.venv/bin/python /opt/aura/tools/demo/serve.py --port 8019
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=240
+KillSignal=SIGTERM
+UMask=0077
+NoNewPrivileges=true
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

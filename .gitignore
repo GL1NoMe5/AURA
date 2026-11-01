@@ -1,0 +1,23 @@
+/.local/
+.env
+.env.*
+!.env.example
+/resources/models/**/*.pth
+/resources/models/**/*.partial
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+**/*.pyc
+**/node_modules/
+**/dist/
+**/*.tsbuildinfo
+# Local artwork sources, film projects and development-only material.
+/Video/
+/Voice/
+/assets/
+/.agents/
+/tasks/
+/tools/muse/
+/resources/models/
+/resources/vendor/depth-anything-v2/

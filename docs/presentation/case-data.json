@@ -1,0 +1,54 @@
+{
+  "case": "Linkding v1.46.2 historical file-buffering defect",
+  "date": "2026-10-30",
+  "repair": "AI-proposed, human-reviewed and amended; operator-approved deployment",
+  "source_sha256": "181bf6e193688b5adf6de0496aa8aaf3ac98548a0caae76a05e9be6fc4a5e89a",
+  "container_memory_limit_bytes": 268435456,
+  "before": {
+    "complete_downloads": 0,
+    "attempted_downloads": 2,
+    "oom_kills": 2
+  },
+  "after": {
+    "complete_downloads": 2,
+    "sha256_matches": 2,
+    "file_bytes_each": 524288000,
+    "oom_kills": 0,
+    "sampled_max_memory_bytes": 184339660,
+    "transfer_seconds": [
+      8.266,
+      6.75
+    ]
+  },
+  "samples": [
+    {
+      "elapsed_seconds": 1.985,
+      "memory_bytes": 128974848
+    },
+    {
+      "elapsed_seconds": 4.016,
+      "memory_bytes": 139565465
+    },
+    {
+      "elapsed_seconds": 6.016,
+      "memory_bytes": 153826099
+    },
+    {
+      "elapsed_seconds": 8.016,
+      "memory_bytes": 184339660
+    },
+    {
+      "elapsed_seconds": 10.031,
+      "memory_bytes": 152567808
+    },
+    {
+      "elapsed_seconds": 12.016,
+      "memory_bytes": 168401305
+    },
+    {
+      "elapsed_seconds": 14.031,
+      "memory_bytes": 168296448
+    }
+  ],
+  "measurement": "Seven discrete memory samples during post-deployment operation checks. Lines connect measured points; no continuous peak or time-to-repair claim."
+}

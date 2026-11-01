@@ -1,0 +1,78 @@
+WEBVTT
+
+00:00:03.000 --> 00:00:06.900
+When an app stops responding, someone has to work out
+what changed.
+
+00:00:07.800 --> 00:00:12.180
+AURA helps small teams investigate and recover the
+applications they run in Docker.
+
+00:00:15.450 --> 00:00:20.690
+Here's Linkding. We've saved its working settings and
+given AURA permission to restore them automatically.
+
+00:00:24.460 --> 00:00:27.300
+For this test, we deliberately change the app's port.
+
+00:00:28.020 --> 00:00:31.100
+The container keeps running, but requests stop reaching
+it.
+
+00:00:31.700 --> 00:00:34.180
+AURA notices the failed checks and starts
+investigating.
+
+00:00:37.390 --> 00:00:42.250
+Two agents using Meta's Open 1026 model examine the
+runtime and configuration.
+
+00:00:43.270 --> 00:00:45.930
+A third combines their findings into a proposed action.
+
+00:00:49.410 --> 00:00:52.370
+The app is listening on a different port from its saved
+configuration.
+
+00:00:53.210 --> 00:00:55.130
+Restarting it would leave that setting unchanged.
+
+00:00:59.560 --> 00:01:03.460
+AURA checks the proposal against our permissions and
+restores the saved settings.
+
+00:01:04.120 --> 00:01:07.580
+It then sends real requests to confirm that the app
+responds again.
+
+00:01:10.000 --> 00:01:15.520
+In this run, recovery was confirmed in 93 seconds using
+three model calls.
+
+00:01:16.220 --> 00:01:18.200
+We didn't intervene after introducing the fault.
+
+00:01:23.440 --> 00:01:25.640
+We also tested a separate memory problem.
+
+00:01:26.260 --> 00:01:29.340
+The generated code fix needed a correction during human
+review.
+
+00:01:30.180 --> 00:01:32.600
+AURA then tested and deployed the approved version.
+
+00:01:33.360 --> 00:01:36.480
+Both large files downloaded in full with their contents
+verified.
+
+00:01:42.400 --> 00:01:46.500
+The findings, changes, and verification results stay
+available for review.
+
+00:01:47.140 --> 00:01:49.160
+New apps start in observation mode.
+
+00:01:49.720 --> 00:01:52.640
+You choose which recovery actions AURA can take
+automatically.

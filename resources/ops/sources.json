@@ -1,0 +1,35 @@
+{
+  "purpose": "OPS-001 evaluator provenance; never include historical answers in runtime diagnosis evidence",
+  "linkding": {
+    "repository": "https://github.com/sissbruecker/linkding",
+    "license": "MIT",
+    "tag": "v1.46.2",
+    "revision": "f279015767b734c8f9a17c402adaa68bcd9f8d90",
+    "archive_url": "https://codeload.github.com/sissbruecker/linkding/tar.gz/f279015767b734c8f9a17c402adaa68bcd9f8d90",
+    "archive_sha256": "fc9b13676c67d105df7d7bd44d2b36942e5e805b4ebd2f934856f931d0ee9da2",
+    "image": "sissbruecker/linkding@sha256:5e37e0c0a3cb915ab02e432a0c4026e8ad8b3a0f27c9ca9b7cc4feff7d2eefce",
+    "image_platform": "linux/amd64",
+    "image_tag_at_verification": "1.46.2",
+    "issue": "https://github.com/sissbruecker/linkding/issues/1455",
+    "reference_fix": "677ae796b46029a3346e4db0831a65e7a328e1cb",
+    "patch_url": "https://github.com/sissbruecker/linkding/commit/677ae796b46029a3346e4db0831a65e7a328e1cb.patch",
+    "patch_sha256": "74d606caaf0c7da734a43cc4fc4999884e0332f0654e905b99201cb28e68a6ed",
+    "test_profile": {
+      "dependency_source": "uv.lock",
+      "lock_sha256": "5ff80ccb3022fd0d667c9dfc31c2f2cbadf714dc05f9b8e35fbb8750814f8f7f",
+      "requirements_sha256": "c05b0424765e91a02d4f56e0eac82dea9fc5705ea9dd12868ed3c3d08c9c14ba",
+      "packages": {
+        "colorama": "0.4.6",
+        "execnet": "2.1.2",
+        "iniconfig": "2.3.0",
+        "packaging": "25.0",
+        "pluggy": "1.6.0",
+        "pygments": "2.20.0",
+        "pytest": "9.0.3",
+        "pytest-django": "4.11.1",
+        "pytest-xdist": "3.8.0"
+      },
+      "requirements_hash_encoding": "UTF-8 with LF newlines"
+    }
+  }
+}

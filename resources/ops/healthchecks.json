@@ -1,0 +1,14 @@
+{
+  "purpose": "Second application portability holdout; observation and reviewed restart only",
+  "repository": "https://github.com/healthchecks/healthchecks",
+  "official_docker_docs": "https://healthchecks.io/docs/self_hosted_docker/",
+  "official_image": "https://hub.docker.com/r/healthchecks/healthchecks",
+  "tag": "v5.0.3",
+  "revision": "51a503531d845fc11d5ef270d576c59c300e3620",
+  "image": "healthchecks/healthchecks@sha256:bc906a0dbb30ab78eb5d73ce359b3ffc51e82bb87577b10040738caf8639a66f",
+  "image_index_digest": "sha256:5eb96eb72dc63ac24743f1c0fc4469931155329e05c9781a0809320de0ae479c",
+  "image_platform": "linux/amd64",
+  "license": "BSD-3-Clause",
+  "verification_date": "2026-10-28",
+  "runtime_verified": false
+}

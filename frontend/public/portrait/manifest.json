@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "source": "AURAv2.png",
+  "source_sha256": "736f29759cf16a432ae49e406c43067cbb609db1fc085c0f65c059850b3deb94",
+  "source_size": [
+    2272,
+    2816
+  ],
+  "working_size": [
+    1033,
+    1280
+  ],
+  "count": 120000,
+  "seed": 27102026,
+  "binary": "particles.bin",
+  "binary_sha256": "6c61f0fcaabd8e24d49d118a09143cb9f4af91c570d6c28b134df695d815c3d7",
+  "dtype": "little-endian float32",
+  "stride": 10,
+  "attributes": {
+    "position": [
+      0,
+      3
+    ],
+    "uv": [
+      3,
+      2
+    ],
+    "luminance": [
+      5,
+      1
+    ],
+    "opacity": [
+      6,
+      1
+    ],
+    "features": [
+      7,
+      3
+    ]
+  },
+  "colors": {
+    "binary": "colors.bin",
+    "binary_sha256": "c01a0f3e5c85514a8c65463c59844da3e282c76e0e226e89c018f80d1f1efbbb",
+    "space": "linear sRGB",
+    "dtype": "little-endian float32",
+    "stride": 3,
+    "sampling": "source RGB at each existing particle UV; identical particle order"
+  },
+  "coordinates": "Y up, Z toward viewer; UV origin top-left; height 4.8 world units",
+  "depth": {
+    "model": "Depth Anything V2 Small",
+    "input_size": 518,
+    "device": "cpu",
+    "kind": "relative inverse depth; larger is nearer",
+    "world_relief": 0.85,
+    "normalization_percentiles": [
+      2,
+      98
+    ]
+  },
+  "matte": {
+    "mode": "alpha",
+    "custom_mask": "AURAv2-mask.png",
+    "mask_sha256": "e45e2a139d2b1f62fa7abbc562abda7907020ea4da185ac207f8e7f9dce2b1db",
+    "note": "Source alpha and feathered frame; opaque backgrounds need an explicit mask"
+  },
+  "feature_layout": "aura-v2",
+  "features": "Approximate soft image-space eye/mouth influence fields; animation requires visual tuning",
+  "limitations": [
+    "Source framing retained; foreground and frame edges are feathered",
+    "2.5D single view, no back or hidden surfaces",
+    "Diagnostic splats are not final Three.js visual acceptance"
+  ]
+}

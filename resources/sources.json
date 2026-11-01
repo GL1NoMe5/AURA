@@ -1,0 +1,1964 @@
+{
+  "purpose": "AURA visual preparation only; no application initialized",
+  "sources": [
+    {
+      "repository": "https://github.com/anthropics/skills",
+      "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+      "locations": [
+        ".agents/skills/frontend-design"
+      ]
+    },
+    {
+      "repository": "https://github.com/CloudAI-X/threejs-skills",
+      "revision": "0e181866f095b5f06d005133876e926515390d95",
+      "locations": [
+        ".agents/skills/threejs-shaders",
+        ".agents/skills/threejs-postprocessing",
+        ".agents/skills/threejs-performance",
+        ".agents/skills/threejs-animation"
+      ]
+    },
+    {
+      "repository": "https://github.com/cesartevisual/threejs-skills",
+      "revision": "84f9bcb4bea1f7a28d57fe7f0af78f7f9c3dc467",
+      "locations": [
+        ".agents/skills/threejs-particles"
+      ]
+    },
+    {
+      "repository": "https://github.com/mrdoob/three.js",
+      "revision": "02b15eeaaf4230c2f4fa5b8d61da7716092a37f4",
+      "locations": [
+        "resources/references/threejs"
+      ],
+      "selected_files": [
+        "LICENSE",
+        "package.json",
+        "examples/webgl_video_kinect.html",
+        "examples/webgl_custom_attributes_points.html",
+        "examples/webgl_postprocessing_unreal_bloom.html"
+      ]
+    },
+    {
+      "repository": "https://github.com/stegu/psrdnoise",
+      "revision": "419175a270862ce7ae692038fafafb42ec0427e9",
+      "locations": [
+        "resources/vendor/psrdnoise"
+      ],
+      "archive_sha256": "46567a56565a966c4f159faabc8370469c880f97ad15beae3096e18fb152030c"
+    },
+    {
+      "repository": "https://github.com/DepthAnything/Depth-Anything-V2",
+      "revision": "a561b849ebae10a6f5ef49e26c83cbbcd36c71bf",
+      "locations": [
+        "resources/vendor/depth-anything-v2"
+      ],
+      "archive_sha256": "0022639d5b23499329ca4fd29a92993e86b52fdfe9aaf21df683383136e91b65"
+    },
+    {
+      "repository": "https://huggingface.co/depth-anything/Depth-Anything-V2-Small",
+      "revision": "03876f8651c73a60fe4c2c48294e09fcb6838fcf",
+      "locations": [
+        "resources/models/depth-anything-v2-small"
+      ],
+      "weights_sha256": "715fade13be8f229f8a70cc02066f656f2423a59effd0579197bbf57860e1378",
+      "weights_bytes": 99218434
+    },
+    {
+      "repository": "https://github.com/vercel-labs/agent-skills",
+      "revision": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "locations": [
+        ".agents/skills/web-design-guidelines"
+      ],
+      "license_note": "No standalone license file at root or skill path; local reference only."
+    },
+    {
+      "repository": "https://github.com/vercel-labs/web-interface-guidelines",
+      "revision": "434b7f91364665f2f733b310ec54809bf8f37937",
+      "locations": [
+        "resources/references/web-interface-guidelines"
+      ]
+    },
+    {
+      "repository": "https://github.com/blader/humanizer",
+      "revision": "0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0",
+      "locations": [
+        ".agents/skills/humanizer"
+      ],
+      "license": "MIT",
+      "purpose": "Editorial review of README copy; skill text only, no upstream scripts executed"
+    },
+    {
+      "repository": "https://github.com/blixvip/skills",
+      "revision": "b8b7e23c9f54c4450d9f8821581f8aad7e91984e",
+      "locations": [
+        ".agents/skills/motion-design",
+        ".agents/skills/motion-animate",
+        ".agents/skills/ae-extendscript"
+      ],
+      "purpose": "AURA promo v2 motion design and Adobe scripting; instruction-only resources"
+    }
+  ],
+  "files": [
+    {
+      "path": ".agents/skills/frontend-design/LICENSE.txt",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": ".agents/skills/frontend-design/SKILL.md",
+      "bytes": 9390,
+      "sha256": "d91970639e9f5c37682ac7ab60094d35f1c7c1f38d731bd56396563aee10c1d3"
+    },
+    {
+      "path": ".agents/skills/threejs-animation/LICENSE",
+      "bytes": 1066,
+      "sha256": "d26f12fa1a0e03fd5aa4d3cbf05262a9f1c684672d0864abac78b3bbb12b268c"
+    },
+    {
+      "path": ".agents/skills/threejs-animation/SKILL.md",
+      "bytes": 21367,
+      "sha256": "0ab1b79cb977a1b5b03b247f9ef677acc76c3ee80d42904afb1b66838a19c481"
+    },
+    {
+      "path": ".agents/skills/threejs-particles/LICENSE",
+      "bytes": 1085,
+      "sha256": "01ec0c5bcde294bfe55837fe35d4a0369f9ed2427c0560b0c9f92763eecd8eb3"
+    },
+    {
+      "path": ".agents/skills/threejs-particles/SKILL.md",
+      "bytes": 2008,
+      "sha256": "a0f63aae0245ec8c1ddeb3bf471ba7f27f233095b10b7841f6805935902e28a3"
+    },
+    {
+      "path": ".agents/skills/threejs-performance/LICENSE",
+      "bytes": 1066,
+      "sha256": "d26f12fa1a0e03fd5aa4d3cbf05262a9f1c684672d0864abac78b3bbb12b268c"
+    },
+    {
+      "path": ".agents/skills/threejs-performance/SKILL.md",
+      "bytes": 25315,
+      "sha256": "dacbf6a43ed280bdfcda2ce9fcf7a3f0ae54c25ed264e62f6e9a0117d6534285"
+    },
+    {
+      "path": ".agents/skills/threejs-postprocessing/LICENSE",
+      "bytes": 1066,
+      "sha256": "d26f12fa1a0e03fd5aa4d3cbf05262a9f1c684672d0864abac78b3bbb12b268c"
+    },
+    {
+      "path": ".agents/skills/threejs-postprocessing/SKILL.md",
+      "bytes": 27097,
+      "sha256": "0063f5f544215748ed666d878f1d69112094e662792228445a3ab9a56d209fb1"
+    },
+    {
+      "path": ".agents/skills/threejs-shaders/LICENSE",
+      "bytes": 1066,
+      "sha256": "d26f12fa1a0e03fd5aa4d3cbf05262a9f1c684672d0864abac78b3bbb12b268c"
+    },
+    {
+      "path": ".agents/skills/threejs-shaders/SKILL.md",
+      "bytes": 26503,
+      "sha256": "8dc55ed6cc348abaad60851ae9f3f5ebcc6e3027dd7f7a55acc1832c73f11bca"
+    },
+    {
+      "path": "resources/licenses/anthropics--skills/LICENSE",
+      "bytes": 10174,
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594"
+    },
+    {
+      "path": "resources/licenses/cesartevisual--threejs-skills/LICENSE",
+      "bytes": 1085,
+      "sha256": "01ec0c5bcde294bfe55837fe35d4a0369f9ed2427c0560b0c9f92763eecd8eb3"
+    },
+    {
+      "path": "resources/licenses/CloudAI-X--threejs-skills/LICENSE",
+      "bytes": 1066,
+      "sha256": "d26f12fa1a0e03fd5aa4d3cbf05262a9f1c684672d0864abac78b3bbb12b268c"
+    },
+    {
+      "path": "resources/models/depth-anything-v2-small/depth_anything_v2_vits.pth",
+      "bytes": 99218434,
+      "sha256": "715fade13be8f229f8a70cc02066f656f2423a59effd0579197bbf57860e1378"
+    },
+    {
+      "path": "resources/models/depth-anything-v2-small/README.md",
+      "bytes": 1958,
+      "sha256": "d96b19c959007126110b199a7c2e9c24530b61796a26f1af035420625a10f916"
+    },
+    {
+      "path": "resources/references/threejs/examples/webgl_custom_attributes_points.html",
+      "bytes": 4858,
+      "sha256": "5316fb3913d1c75d097c1be1808d0ad6cfe3a093da4bd4a7e511f20794245445"
+    },
+    {
+      "path": "resources/references/threejs/examples/webgl_postprocessing_unreal_bloom.html",
+      "bytes": 5483,
+      "sha256": "c9a014b1fc8cc57d3448e49bc4848a0c6dffebb7c4d05c92e198c00996d6d6c0"
+    },
+    {
+      "path": "resources/references/threejs/examples/webgl_video_kinect.html",
+      "bytes": 5504,
+      "sha256": "53fb810843a582008fa81ce016b37b096384520d5b57aab92304ba2db042259a"
+    },
+    {
+      "path": "resources/references/threejs/LICENSE",
+      "bytes": 1081,
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+    },
+    {
+      "path": "resources/references/threejs/package.json",
+      "bytes": 3812,
+      "sha256": "50e651ded364f9b1d0325bec5af816e2fd83679b9122ba58b4f009862bd4cd0c"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/app.py",
+      "bytes": 3250,
+      "sha256": "52fe296af84ccb9a784e5e7c8a204b817fe150eefbdea81e07010c3415acf4f4"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/DA-2K.png",
+      "bytes": 1180754,
+      "sha256": "e5aa376424bfc2dfdfa140773690d85b22b51200dc0b02324beb050de9b51d69"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo01.jpg",
+      "bytes": 488150,
+      "sha256": "35ef1bbb63f6540e49aa9b6302b9b938be4fe8b9c08c07c3694b02396b0e87e0"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo02.jpg",
+      "bytes": 510806,
+      "sha256": "c1f116034aa5abd5b5470226be2bb03bd938c8affe90389c52d10fe8b1ac7e21"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo03.jpg",
+      "bytes": 464937,
+      "sha256": "764dffd4d97bbacd620bc005fa86837018393ccb5ffd1059c2245a3cacff7782"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo04.jpg",
+      "bytes": 299824,
+      "sha256": "3a301f4e0361fe75ca4d256a35062f87eecc3f7655d747c9def3259c86e26a45"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo05.jpg",
+      "bytes": 353184,
+      "sha256": "50e7e2f057c5a2d27bb09b0b3e814147966e30139ddaf54362c72746a5320339"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo06.jpg",
+      "bytes": 782780,
+      "sha256": "0fd815bddeab139e7477c948a22fffdf84d9b87f81d77dcf6fd8ef39ebaaafb5"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo07.jpg",
+      "bytes": 400463,
+      "sha256": "345bec735adc4c238bf14ddf1d182c4881f8ba08814c4f4074c1d79e9e4adc52"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo08.jpg",
+      "bytes": 102825,
+      "sha256": "d32b480349013be5f84521b0df1d6590139163aef8457f051076ed03c7371e6f"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo09.jpg",
+      "bytes": 410224,
+      "sha256": "6a64033ba69bb408c092dbff811abfbcb0196f1f87541902d03d2a909a0b8ea9"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo10.jpg",
+      "bytes": 486825,
+      "sha256": "bc77f215081f58de8d079e821e2808f6ee2727dfa729c10a5921c186a32c7638"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo11.jpg",
+      "bytes": 243712,
+      "sha256": "150ef98e997ee6ff705bd06105c343f76a8f181ef93ff9ceebbd62a3ab6b592b"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo12.jpg",
+      "bytes": 263007,
+      "sha256": "264458adcf5af6e3733dfda7ef4628c4a1dc49ed249aa8896256d9534a8377c4"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo13.jpg",
+      "bytes": 421112,
+      "sha256": "9168fc752a002d50138a56621e8de5fab7fed125a978dd293319d28d30993564"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo14.jpg",
+      "bytes": 642925,
+      "sha256": "01480d952bc950332f0eea31da0777f66d5f285d8edfe2a5f47508f4b260a99f"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo15.jpg",
+      "bytes": 768703,
+      "sha256": "bf60ce3879f627e8886280cc61442174c91908894a5b059681341fed600f7db3"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo16.jpg",
+      "bytes": 377831,
+      "sha256": "a92e51732b38ad8b21b5cbbc6883374bd5ab56bb4907d6c4f1e13307970480ee"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo17.jpg",
+      "bytes": 152591,
+      "sha256": "7174dcfbbb95a2e581ebf1e14cfbb4bef7a1295ae9cece405c87145223dcb32d"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo18.jpg",
+      "bytes": 178905,
+      "sha256": "4deeb16dbee40108f194bd87c8621416110427c8ab5fc5ad6a1d9002b2b620c2"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo19.jpg",
+      "bytes": 1004211,
+      "sha256": "7cdb09c34eb0b4d2ac5f6070aec47c8f983a0b1b2c9ee1fc30decafb64f1bd98"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples/demo20.jpg",
+      "bytes": 498212,
+      "sha256": "2958fd1b7018e40b68ccc8d74ff8e50bf143f5046711d57c54eec2a479550ace"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples_video/basketball.mp4",
+      "bytes": 9714271,
+      "sha256": "3049687fa169e8383c8f90086ea457bd786e72e85584ec8b511599ebcc6cbb27"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/examples_video/ferris_wheel.mp4",
+      "bytes": 5334034,
+      "sha256": "df452351def30bc0be2fef6be57e93745074954755a2b03f2b706045747a9697"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/assets/teaser.png",
+      "bytes": 12818034,
+      "sha256": "d5609203ee36b8745303051e474ea02d452595b85698a33d643c5800797402e1"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/DA-2K.md",
+      "bytes": 1948,
+      "sha256": "1ad263ca142391da0bc91925a5123487ee867e3ec8237e6be7201fdf59a02a7e"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dinov2.py",
+      "bytes": 15178,
+      "sha256": "d22df8d0da44c8525ebed898fd9c33b3acfcda919a84d577cc2a08bfd3d50ac1"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dinov2_layers/__init__.py",
+      "bytes": 382,
+      "sha256": "e3c28c7b775165b6844000eb69f44d104d6c3803ac7da5d59f6ac3ecfb46d9d8"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dinov2_layers/attention.py",
+      "bytes": 2343,
+      "sha256": "0d2410ce8b8b4499a6b0cdab939ae2bceab8971efd8660d999b0f3088f28cbf7"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dinov2_layers/block.py",
+      "bytes": 9332,
+      "sha256": "093266ea08084c7cce7b8ddd779ecfaaa13055735faa8a7d68b5924f385b395b"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dinov2_layers/drop_path.py",
+      "bytes": 1160,
+      "sha256": "949100aac4d9c19c9d65319dbd362886c5d46a72d7586ba4fd500e9f1d51570c"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dinov2_layers/layer_scale.py",
+      "bytes": 823,
+      "sha256": "356817b5d1390737128cbcc03a5333fd3060b73beae478772282ccb851d0ef85"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dinov2_layers/mlp.py",
+      "bytes": 1272,
+      "sha256": "c18c5b3f021408597a473bb710070ec3fb3b39f5a2e42e88ae83ced425a608b5"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dinov2_layers/patch_embed.py",
+      "bytes": 2832,
+      "sha256": "b3f82e19926c9cfb63f10136aca5e8a723bde1ad62dae1d04f90d405f9439baf"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dinov2_layers/swiglu_ffn.py",
+      "bytes": 1859,
+      "sha256": "df81d9901240214edc1831ce1b77558dcd6227b29a2f000fc5f546df55d2d09a"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/dpt.py",
+      "bytes": 7391,
+      "sha256": "7cc9a29b41d31e1628e5c8b8705e25ae95bc6490f779dbb695297ce2341566f5"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/util/blocks.py",
+      "bytes": 3987,
+      "sha256": "351aa24b8af4bef923ebe3bed5e5e8503b08e39bf06ee045d6444a485a2036a8"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/depth_anything_v2/util/transform.py",
+      "bytes": 6075,
+      "sha256": "a97df1dbb687457a40c387fdc3482edee7ddc5c142c7d2735ca6235a8ae2885f"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/LICENSE",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/assets/compare_zoedepth.png",
+      "bytes": 9187108,
+      "sha256": "8044e39ef6cb4aaabea9a81333fa1ff2d3e07448e7f9f43f77f471aba72a12e0"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/dataset/hypersim.py",
+      "bytes": 2719,
+      "sha256": "4b0d8a02bf824c44333db2ffc5325040d9225431d0c277765fd67b6ca7447617"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/dataset/kitti.py",
+      "bytes": 1864,
+      "sha256": "30794974e677419313d6f0e29f9e8467e059a03e6d68eb1a17123b1c5476bc11"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/dataset/splits/hypersim/train.txt",
+      "bytes": 13694890,
+      "sha256": "47beb7c615a54d08dfa2f053787897455e845ad1b54d268194a6b431b01a04d0"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/dataset/splits/hypersim/val.txt",
+      "bytes": 1698780,
+      "sha256": "201a95ae5409cf5a5fe75b45049812c6804f6521a5d11c2df25601e6aee255be"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/dataset/splits/kitti/val.txt",
+      "bytes": 145074,
+      "sha256": "ff4404a257bab8dbe5949f680033731b57b5f1ebe19a13b0d6fb294e0835df2f"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/dataset/splits/vkitti2/train.txt",
+      "bytes": 3594932,
+      "sha256": "337d29f26a73361a0e50fef1e6601bdbc553fcaca947843dc91dbff88a9ea81c"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/dataset/transform.py",
+      "bytes": 9563,
+      "sha256": "684a884faf897d0be24b18fb215140d0226dd62b8b27cb8aab740f9066715965"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/dataset/vkitti2.py",
+      "bytes": 1807,
+      "sha256": "e6951506752e4bbedc683c25f3197aeafe02fda191fb63a496f3d5a027ddfc40"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dinov2.py",
+      "bytes": 15177,
+      "sha256": "0ceeaecd4e8026f8218694014642515fb7a0943c1833b75edc91ae7a79ac9690"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dinov2_layers/__init__.py",
+      "bytes": 382,
+      "sha256": "e3c28c7b775165b6844000eb69f44d104d6c3803ac7da5d59f6ac3ecfb46d9d8"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dinov2_layers/attention.py",
+      "bytes": 2343,
+      "sha256": "0d2410ce8b8b4499a6b0cdab939ae2bceab8971efd8660d999b0f3088f28cbf7"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dinov2_layers/block.py",
+      "bytes": 9332,
+      "sha256": "093266ea08084c7cce7b8ddd779ecfaaa13055735faa8a7d68b5924f385b395b"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dinov2_layers/drop_path.py",
+      "bytes": 1160,
+      "sha256": "949100aac4d9c19c9d65319dbd362886c5d46a72d7586ba4fd500e9f1d51570c"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dinov2_layers/layer_scale.py",
+      "bytes": 823,
+      "sha256": "356817b5d1390737128cbcc03a5333fd3060b73beae478772282ccb851d0ef85"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dinov2_layers/mlp.py",
+      "bytes": 1272,
+      "sha256": "c18c5b3f021408597a473bb710070ec3fb3b39f5a2e42e88ae83ced425a608b5"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dinov2_layers/patch_embed.py",
+      "bytes": 2832,
+      "sha256": "b3f82e19926c9cfb63f10136aca5e8a723bde1ad62dae1d04f90d405f9439baf"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dinov2_layers/swiglu_ffn.py",
+      "bytes": 1859,
+      "sha256": "df81d9901240214edc1831ce1b77558dcd6227b29a2f000fc5f546df55d2d09a"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/dpt.py",
+      "bytes": 7417,
+      "sha256": "120698fd0ad9a4d169b4b9ef26035ad0cb11eed4089af53e07e38f5717024b1d"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/util/blocks.py",
+      "bytes": 3987,
+      "sha256": "351aa24b8af4bef923ebe3bed5e5e8503b08e39bf06ee045d6444a485a2036a8"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_anything_v2/util/transform.py",
+      "bytes": 6075,
+      "sha256": "a97df1dbb687457a40c387fdc3482edee7ddc5c142c7d2735ca6235a8ae2885f"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/depth_to_pointcloud.py",
+      "bytes": 5031,
+      "sha256": "d4d30d0ce76c2fdbf539cd97bed01948d7506acd8fe75481ab4b32c4170310d7"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/dist_train.sh",
+      "bytes": 730,
+      "sha256": "1daaa9092a51cc1e972219fd04902baf09e290bb7a2221e9e6287895f565fef1"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/README.md",
+      "bytes": 4621,
+      "sha256": "659b050b538d5832899c093b83b5fb48e50c3431cf84f1f05bbdc8152b81c9d2"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/requirements.txt",
+      "bytes": 50,
+      "sha256": "e46b77335e73e73884ca465deac9c63f572e71e19ceeb1396d138415d3ec4771"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/run.py",
+      "bytes": 3518,
+      "sha256": "ce2ecbb342933ff442f6fefab14ef5f5b7aea42c7987325f6f3166c9c73f84cb"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/train.py",
+      "bytes": 9401,
+      "sha256": "1461b9a4ffc880085b3a1d193d052da5ce416a999421c65b792267e65fccfb10"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/util/dist_helper.py",
+      "bytes": 1343,
+      "sha256": "97eb1d0eaa639c2599813c3b5578cb39d9d415efe99aea1ff7cf6eab1ea8e9c8"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/util/loss.py",
+      "bytes": 472,
+      "sha256": "4acc0c1c805bc16dba34e7bd0ee9ffb9ba50d374868412cf96dffff087023a2b"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/util/metric.py",
+      "bytes": 1010,
+      "sha256": "595ae2f0c8bda88f6588d35b199b5ec9d4ba7ad531f58bd593d5ef4d28263794"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/metric_depth/util/utils.py",
+      "bytes": 647,
+      "sha256": "e69aa66e267e9b251826dbb0386b6f47fdd5fc4a4e2bfd1c98405f4bb1be526b"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/README.md",
+      "bytes": 9904,
+      "sha256": "987d1ab991c1b149276a0426bec7d8f3472d85c29ec976d96ea657aa960fad50"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/requirements.txt",
+      "bytes": 69,
+      "sha256": "e24ea3bab22d643e58f8e400fc383d2db1a9c6fd6d24ab161b2b9516e74d159e"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/run.py",
+      "bytes": 3043,
+      "sha256": "b8beab6341314bc864cfc0283e0e303f55571af4e2e456c3d3afbc4aae67249a"
+    },
+    {
+      "path": "resources/vendor/depth-anything-v2/run_video.py",
+      "bytes": 3750,
+      "sha256": "208c173e383c0515a3a23d35b2a4cde816560f1c01af19913fc4dedc4b1cf32c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/article/jcgt201-publishedversion.pdf",
+      "bytes": 20401334,
+      "sha256": "16f053955d732a1e0b0aca637bddc43ad1e576af3bc09719b96685220b00b9aa"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/article/psrdnoise-fastnoiserot.pdf",
+      "bytes": 301177,
+      "sha256": "d26ebb00764a80685dda2bc21a679182d644d8c0f7b6bf991d6a1119b07b75c2"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/article/psrdnoise-supplement.pdf",
+      "bytes": 2983933,
+      "sha256": "f32ad0f3bd1728b6d344550cd070ce30649f2c2baa4bfe6ef1ab8d8b864f7110"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/article/README.md",
+      "bytes": 448,
+      "sha256": "3173bd7c6c2aab344c96f390d6fbf4404f8aec1eac8e592e6de98ec0c148d8e5"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/bloodspatter-webgl.html",
+      "bytes": 4180,
+      "sha256": "442d6677a1b93307e33ec52bc4244f8418827f52aebd6fd5a3f54ea2475e5a8f"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/index.html",
+      "bytes": 1116,
+      "sha256": "ebc2b039f745e097de8985c95211b6609cc566fb9f9db04b806021e0f37c98d2"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/noisyplane2d-webgl.html",
+      "bytes": 3251,
+      "sha256": "7a174dd7e42dedc80bb9fa1096506c53958128f3964a9118f771a65fcc0dab3b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/noisyplane3d-webgl.html",
+      "bytes": 12063,
+      "sha256": "049db4e4011360ef63c160d5678ac217b01dd14d8ac75c8d0256609068cf2c97"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/psrdnoise.css",
+      "bytes": 78,
+      "sha256": "ca1251eed884449b1d69a994bdad4dfe6dcd007a07346f520d7e2569c9e8deee"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/puffyplane-webgl.html",
+      "bytes": 3510,
+      "sha256": "3f9f53dbaef13fbc7c4f798362168c5c2924ead3eb984041b6f5efb3c2d0c32a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/pyroplane-webgl.html",
+      "bytes": 3893,
+      "sha256": "1b2f943838d4fe19eb41dc30f3ec5edadc2914895310d2363459d058806e2520"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/wavyplane-webgl.html",
+      "bytes": 4720,
+      "sha256": "0fdbcc8842fdee56d4aad7bebd4531ffc3ad4b0107d5713b3a696ee8b10cc12a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/webgl-onequad.js",
+      "bytes": 5772,
+      "sha256": "7a218d27297dca4a7becc2ac39792419388c2ae18332686eef873db447b4df90"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-gallery/weirdplane-webgl.html",
+      "bytes": 4003,
+      "sha256": "7eafa132c19eabe14f6b83dbf4387218ceb77f066db64cfa28e824ad4902bcb6"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-drawquad.js",
+      "bytes": 5447,
+      "sha256": "07892750c2b54ccadc28292f89520f8c960366ea763e91be56d5b25ef16b8590"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-01.html",
+      "bytes": 6719,
+      "sha256": "c4bc8050319d24e54ca27e589a8571e6a432f21b252b98ba741c86a864dd0fe2"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-02.html",
+      "bytes": 6787,
+      "sha256": "2ee41aa6d6e3810e66a159e9982b1bb99805d6de47a9c07fbd1f4eeeea2ebb7c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-03.html",
+      "bytes": 6456,
+      "sha256": "f6848fe37197025a4cfca9f024734e4a5d15ca8c0527b29568d6d8ab3a7d024b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-04.html",
+      "bytes": 7030,
+      "sha256": "5732a1a5be5f77af2e13ff614cf4b1a0c320a7fbab88a6c31ead9884b810a032"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-05.html",
+      "bytes": 7448,
+      "sha256": "f367351e9525498c7a5fb0943149fe32c109c45afe84dde4b74aeff69f426bb4"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-06.html",
+      "bytes": 7744,
+      "sha256": "4b5730924b76647e816f4ca94f5a664250fa2c4cf627f1074ad05a2f0dcc46fc"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-07.html",
+      "bytes": 6632,
+      "sha256": "0df805caf9e6cb22a0312238b87158e44fc930b002fbfb4f85c40b8d07a2ae42"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-08.html",
+      "bytes": 6709,
+      "sha256": "4e0ba7d0092e4b27c97f2026f26430eb9fb4bc8fb83b39551c9d202fffb4d38c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-09.html",
+      "bytes": 7562,
+      "sha256": "97a73603a8826ed316dbe818dcd5807010156c431f695eb9dbb517620afdd484"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-10.html",
+      "bytes": 7456,
+      "sha256": "5f72735b66bf173424550a106c624723af0e5ff31fafbb1e694d908f2ee74e6e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-11.html",
+      "bytes": 9032,
+      "sha256": "c0771d841ead6c55998e42c491546685e63fd4b7383f55b1f7a7f266606890ce"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-12.html",
+      "bytes": 8490,
+      "sha256": "8afada6a0719b362b323428ed0ca8ccc296ae6b05dbc3cdb171dcb3ac463e5f3"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-13.html",
+      "bytes": 6786,
+      "sha256": "ef2d39dbd1f95b11e498b11562cca0cbf429e2cef783cbd6d4acd56102ccee84"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-14.html",
+      "bytes": 8417,
+      "sha256": "80d02faa2241c37e6e8b648a91b845d67ec4b8e2a18c8ed54d6b7ade43130f3f"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-15.html",
+      "bytes": 7687,
+      "sha256": "318395914787a2eb267adb55d213d5a85e61589ec8488dbde8975760d1d112d9"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-16.html",
+      "bytes": 7240,
+      "sha256": "08dbf2dd349664f7a6f58171c8d5390f8a8c9eac0a461501eec0b1a203c2255c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-17.html",
+      "bytes": 7500,
+      "sha256": "11d4366aa7f16bfd6721e1e6009548f4e0e3dfd10efdfafe3c7e2d4532a7addf"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-18.html",
+      "bytes": 6527,
+      "sha256": "c78ad89abd8e5b1e5ac3ef505b4265127f34e1a47256880ba98cd643eeed9dec"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-19.html",
+      "bytes": 5909,
+      "sha256": "a24323063a8b5311f64b429eb4286d25235e95aa2488ab729c9f0a095f51ea60"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-20.html",
+      "bytes": 6845,
+      "sha256": "536aa328d9878f007150f9bc071cf9133cffc7e10e8cdf30febd09a987a04db8"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial-21.html",
+      "bytes": 6889,
+      "sha256": "2673ebe25a12514a748fef96683d95b8b2ca299acfc744bae43d17bbf097c056"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/2d-psrdnoise-tutorial.css",
+      "bytes": 651,
+      "sha256": "692ef627ff3ecb15e267ba7f0006e96cfd6165ff34b4d9ec4582fa861b8afa6c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/index.html",
+      "bytes": 6719,
+      "sha256": "c4bc8050319d24e54ca27e589a8571e6a432f21b252b98ba741c86a864dd0fe2"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/_theme_template.scss",
+      "bytes": 3489,
+      "sha256": "6929b9a22383ed8a47b7000f74fba9a4eb93f00c6736609a4336e25420a63dcb"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/config.rb",
+      "bytes": 302,
+      "sha256": "ef1043a5f348b5f7000680a8f0671c172223ac7acff8af2c21088a60c3f14c25"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shCore.scss",
+      "bytes": 5014,
+      "sha256": "931e3c52eb8e57b285c757fd17f99aecfd32a3cce869f19e0ba617b28b8b233e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreDefault.scss",
+      "bytes": 54,
+      "sha256": "8a20f2ecb3fc6774b66c72918e60e88e4a81df893d724aec0ce0f1dc777e56b7"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreDjango.scss",
+      "bytes": 53,
+      "sha256": "65d1ae41d46f8cd0747db3fb50890c333135b82cad737b8772dbb9e32a6f1697"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreEclipse.scss",
+      "bytes": 54,
+      "sha256": "98c8b2ddbdcface4c3bc8a43c50c3e0a35f06881253467d5a83962c6c269b154"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreEmacs.scss",
+      "bytes": 52,
+      "sha256": "9e42d0692eea2231acc9d8d2152258a47b0c84e3342ef05a941e4306756b6fb1"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreFadeToGrey.scss",
+      "bytes": 57,
+      "sha256": "51d20e9a3621f81ff1e683fb1c9caa5b763bc1b7ac3bd058b86ea110b3be4449"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreMDUltra.scss",
+      "bytes": 54,
+      "sha256": "00e18b332f7ee0ceb6161c4bcdcb77264112cc6e29178ad49afbbdc19035739c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreMidnight.scss",
+      "bytes": 55,
+      "sha256": "64d0ba27e2d64f40f48fd704dbe2b0ca23038d47e05f9725c45feef8cfd3f976"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreRDark.scss",
+      "bytes": 52,
+      "sha256": "3914e408fd31fec534da63100f015db7c50fd50ec2c7b4f385642014738dfe78"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeDefault.scss",
+      "bytes": 138,
+      "sha256": "a4822d6918d963e26112f68d254dc647f4681e382db80e5f85fd6a19e855319d"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeDjango.scss",
+      "bytes": 1039,
+      "sha256": "028fcd9656faa65f4ad005c2f0a52df700a9228ea09e20c71f214525be401ad6"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeEclipse.scss",
+      "bytes": 1326,
+      "sha256": "7452ce4e5484a0507cef97be12fc2d4b91b6e859b081b4b5b2d89daa3555adbd"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeEmacs.scss",
+      "bytes": 978,
+      "sha256": "6f871b395b01b180dc09c8c07bb77c74eef674cda0604c9f3cfe654e65a62499"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeFadeToGrey.scss",
+      "bytes": 1063,
+      "sha256": "df01b5571f255517dd58383d4f6ddf5c0cbae7ce8fbdce22020fdcdc1756e314"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeMDUltra.scss",
+      "bytes": 965,
+      "sha256": "d128e2b0f5148cf89778542529c484f49d92a65c20384c2120fd9b9d36ea61e5"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeMidnight.scss",
+      "bytes": 992,
+      "sha256": "fa34809730c1022a65f73a41dc0f7ea031e3a9cc0e86b78460fab260181b879b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeRDark.scss",
+      "bytes": 1012,
+      "sha256": "f4b915d3db2613f40fa1e96c26a9dae83c5ee8fde89bbc450e4163dddfb42116"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/index.html",
+      "bytes": 6914,
+      "sha256": "f1ba77b4127d1ba502b6f83a2ca74823bc73c8479ef6498e996d77ab6ba7742f"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/LGPL-LICENSE",
+      "bytes": 7638,
+      "sha256": "9e524b67e30bd448c860934fad7a27226c0837a363fcb242974844f01956c4ae"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/MIT-LICENSE",
+      "bytes": 1061,
+      "sha256": "aac042ff9f8c091d7b183ad2ae9707170671dd8794c98b9f1c64d7872d08babe"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shAutoloader.js",
+      "bytes": 1451,
+      "sha256": "0841295a7e23dabc77c6deb5dc0d10e89a81db34c125f5c4acaffbd2ded3ebde"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushAppleScript.js",
+      "bytes": 8178,
+      "sha256": "e910d375025acb7942dd2a1afc0cad373d424a37610876636ef6bdccc5615c29"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushAS3.js",
+      "bytes": 2431,
+      "sha256": "9871cb70f85eee26668f7400c5efec0245311529c0ba0be27a31d535b39e9a8c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushBash.js",
+      "bytes": 2835,
+      "sha256": "4819e4b43b2b58bff731cf248d1014ab89250ad347fd0529c246385865e54974"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushColdFusion.js",
+      "bytes": 8296,
+      "sha256": "15b8bafb748aeaf8932635e5935b6b3f6ba6ee740cabf624d2d8f10594fed769"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushCpp.js",
+      "bytes": 5284,
+      "sha256": "a049c1d9058f34156daa5dbab591f5bee61161ebee3fc2fef081bfba1c244e1b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushCSharp.js",
+      "bytes": 2528,
+      "sha256": "df44c6cbb3944b3bfaac20e2666af037613853bef6a242dc2ede1fc8efdf63cc"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushCss.js",
+      "bytes": 5694,
+      "sha256": "d3c494b68b64e24bdc66748471fe73d49f0d5402e02029fd6acad00e1a1bd5b8"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushDelphi.js",
+      "bytes": 2382,
+      "sha256": "8ef1e291eec72ca3fff0921378c3a0d460d340b7c31704d3ab9d13d984b71296"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushDiff.js",
+      "bytes": 1057,
+      "sha256": "97f595d1bf336cea21f7caff224238fd1dc9e98f8d4608eb4e742c58e447ed14"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushErlang.js",
+      "bytes": 1712,
+      "sha256": "89fb5ef0ebb288764850672bc58c5782639a2085bfb140c313d7de8ab2bf6d66"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushGLSL.js",
+      "bytes": 2835,
+      "sha256": "21bbd58c05f23d743a99a3b6bd002a326155861d21d3d0c4bbb49ab2d80f6b9a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushGroovy.js",
+      "bytes": 3017,
+      "sha256": "14bbddd8b6c3bb08ecc293fed7d5941ef31a1f837f795a75687e7e5cc1cfea47"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushJava.js",
+      "bytes": 2101,
+      "sha256": "29c5f3b4457780a50847804a17dc6906b11f5dc0ecc78f943d7a488690277cf3"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushJavaFX.js",
+      "bytes": 2238,
+      "sha256": "15367145380ec842cc7f9ac4ee51ca3157b2c19062e5a1f7b625b6d6c2778a68"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js",
+      "bytes": 1649,
+      "sha256": "3f534a9cb3030831626f875de5e69f72e1cc020db2761b6ac8a0186ef4fff512"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPerl.js",
+      "bytes": 3176,
+      "sha256": "d1c7ec6f223e7b7541ab70c5486540f3bfa7b34ebda896f131847a12ff6c73ac"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPhp.js",
+      "bytes": 5246,
+      "sha256": "eeb0f65854972899fc99b17cf25ea68831cfb238e1e41654135c69b8a6f9fd99"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPlain.js",
+      "bytes": 750,
+      "sha256": "4916a1324a99bcafb7b7e8b333d9b1fa37c427950bb0411d38baac12846c17ad"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPowerShell.js",
+      "bytes": 3911,
+      "sha256": "3705039e346c2f75e0f0e8a2c56e8a08ac290def3baa82da68c33263ec7e4d23"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPython.js",
+      "bytes": 2437,
+      "sha256": "8ec5a39b87d75a7a2967fc06474337c15a9ca1978ec4a8843818fc24897e6475"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushRuby.js",
+      "bytes": 2188,
+      "sha256": "85b5c4f0308c8cd394ae84182ed4e60ba70c77d43423895641c8555e10b5a839"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushSass.js",
+      "bytes": 5982,
+      "sha256": "0967b3d04a276ae4b656f36714cf28c0f691c3f5c2dd6d36eb2f1fbaf0f714cc"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushScala.js",
+      "bytes": 1892,
+      "sha256": "575d4786edd00d96154cd1b36a7fb19eaa6a1bec780b64c73060855882630ee5"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushSql.js",
+      "bytes": 3054,
+      "sha256": "83796b8fe75cbbdbb444119072f952caa0acf11fb0f9879ec9994da31567de68"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushVb.js",
+      "bytes": 2281,
+      "sha256": "dc7ad24d7c13335b46b25572c11e1e0238069d54900638d884a53c44d37be5b2"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushXml.js",
+      "bytes": 1998,
+      "sha256": "fb1fe49a904a4fda3ed82d2f88048b2ae88c217980b6bf2163c07f048663b43e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shCore.js",
+      "bytes": 16175,
+      "sha256": "584a26f39cef2db245f41d4f6b8e3d0f7dfac5c06f0f454a49dfb94f6fb1517b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/scripts/shLegacy.js",
+      "bytes": 1870,
+      "sha256": "7d02302bbb9594600c23c2b73fda9bb95ce35e0bdcb9c9d90c87f48ebbe41d33"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/src/shAutoloader.js",
+      "bytes": 2693,
+      "sha256": "f6114696b95325ec029bf03e5c6e5f035565f59eb1fab81f1b5db35fb521340a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/src/shCore.js",
+      "bytes": 43502,
+      "sha256": "f322b22fcbd78f83352698de81520743555b66270c505ca05edf82a41f45a939"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/src/shLegacy.js",
+      "bytes": 3675,
+      "sha256": "760fd5e43231d8b646ec5830ce8c7493fc61af84b629e983680c46e75d4cca5a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shCore.css",
+      "bytes": 6204,
+      "sha256": "fdfaac800799151ba7fa5ff6997892070f6318f58cc61ff29cf19621f8c9b2b8"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreDefault.css",
+      "bytes": 8704,
+      "sha256": "abc7b3b2309b910dd44314a6a55d079c72a8023dd030a6063d6af41a2020e2fd"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreDjango.css",
+      "bytes": 8805,
+      "sha256": "77eb0db384a99893edbe0fdd4f87a3432e61cbf3415fa1b09ad4075ef6be584b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreEclipse.css",
+      "bytes": 9023,
+      "sha256": "8bb4eae83d96d51fd1bee9218b336a87073afaaf443b9a27e399d997cc5dacc4"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreEmacs.css",
+      "bytes": 8662,
+      "sha256": "87062a6bd4dac7d2b9e4925263b20eef8d5c8f82312714f6d03e226466fdb452"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreFadeToGrey.css",
+      "bytes": 8739,
+      "sha256": "fa5eab4090ffac97068befe4f160432137739fd296c4cdb9073f09a1302ea500"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreMDUltra.css",
+      "bytes": 8659,
+      "sha256": "3109efddd5920b120fc3c11ecf3d7627b51047e2da94ac0b165b142ab1c638fb"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreMidnight.css",
+      "bytes": 8680,
+      "sha256": "1a86757b3e57c1295b1cb3ca00c108191952892fe7662f075a407d2365df9276"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreRDark.css",
+      "bytes": 8676,
+      "sha256": "800aaf549c4c44945188709bf0e08d4c8dc7ce1d8aea1af2c34acb466ac13037"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeDefault.css",
+      "bytes": 2877,
+      "sha256": "9718c68f663cfdcef66e2b91917e46e3b83e31c9691a2ff658f9bd55c73bc649"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeDjango.css",
+      "bytes": 2978,
+      "sha256": "1ad8615ad8a968d420ef89e68303ec92d904ae71cf3c2bb00f9f62b0136d9fce"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeEclipse.css",
+      "bytes": 3193,
+      "sha256": "4d37bb5ab00d2cdccd6afecfc41e31cb01fbde11e1787aa7cdd0f99f5949a9bd"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeEmacs.css",
+      "bytes": 2835,
+      "sha256": "be963c340becffab67a43736694ac8ae4aa707e6064a11816457ea784585ae28"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css",
+      "bytes": 2912,
+      "sha256": "60012103f5824c37032ea9fddbdf64a7fdda6e7bd5e143b9828525568089668b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeMDUltra.css",
+      "bytes": 2832,
+      "sha256": "0a1e15a1920078e5be6cefe0300d3ece42cb46f54e7b104cffed8e9ad71035c0"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeMidnight.css",
+      "bytes": 2853,
+      "sha256": "dc88aa6315f6f0301382df26fc4cbc8db5aa27423d2b64c087a7084b3cda722c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeRDark.css",
+      "bytes": 2849,
+      "sha256": "d88580c72babc35a7e06060f46e510b9267fe98876e0ebfcfb956200cfc92bc6"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/tests/brushes/sass.html",
+      "bytes": 4834,
+      "sha256": "4af007ba0e30373be71229a6b9bae13e385ade18c43cb2594a631929f812fd4d"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/tests/brushes_tests.html",
+      "bytes": 4048,
+      "sha256": "2bc9102cdb257eab66af500bdfb231c66e28067e3e609eddb4657745ec4079d8"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/tests/cases/001_basic.html",
+      "bytes": 728,
+      "sha256": "f50d2b61b80b048069201a7ef98ec520a755c256180b5080e4d46dbdde35575d"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/tests/cases/002_brushes.html",
+      "bytes": 1375,
+      "sha256": "2f2c48d857134557a8ff330a26d7ac299cc8cba3a90f391c26dc4fc4333c50f9"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/tests/cases/003_script_tag.html",
+      "bytes": 710,
+      "sha256": "67e6cf2038592cd221f8a4dd17a13670993fe2a6c10bea6150bd43bc7d2dd925"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/2d-tutorial/syntaxhighlighter_3.0.83/tests/cases/004_url_parsing.html",
+      "bytes": 1139,
+      "sha256": "1f1060652cb86be9df219f59c7260877b090e96c4411ed6ed8b8285e65f34848"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/darkenergycore-threejs.html",
+      "bytes": 17234,
+      "sha256": "e61a226f948f0c04ad828195880af3b038f8175a0026473a966486e18e7ba17b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/index.html",
+      "bytes": 1388,
+      "sha256": "e10ddf60564bd23ebbfa5ad459000bc4a5876903128c954b76d7ae8323c2977b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/js/OrbitControls.js",
+      "bytes": 26375,
+      "sha256": "02bb4ade710f3e607329e37a21f098bc3ac70eb6e33daf8a65e79f4db785e7b2"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/js/three.min.js",
+      "bytes": 610963,
+      "sha256": "a9d81ea63fdcb8add0b222e610b6f6a2e468dfb51b59a2210899918ac36ed3f7"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/noisysphere-threejs.html",
+      "bytes": 5906,
+      "sha256": "2b74382ca8931652346e0fab038855ed698374ce9eb005a17df92bd8e3a42a9d"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/psrdnoise.css",
+      "bytes": 78,
+      "sha256": "ca1251eed884449b1d69a994bdad4dfe6dcd007a07346f520d7e2569c9e8deee"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/puffysphere-threejs.html",
+      "bytes": 6308,
+      "sha256": "592a1c643b125ac81cfc78eb0d69fe97ff69d66f9d915ae3a7ca2e1317fcdc2b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/smokeplume-threejs.html",
+      "bytes": 8232,
+      "sha256": "c34de0ce20eb9509cc1771a9f73d58a808d5a07e0c05a14476eb06b5e64f8e70"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/sunred-threejs.html",
+      "bytes": 6601,
+      "sha256": "9805cb113d2154337bcbe63fec9d262b8b0c8cbc0b91da794df90bb679773f2e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/sunyellow-threejs.html",
+      "bytes": 6632,
+      "sha256": "5d6f31994d7ecfb1b4f29d3aaba9d50f53684f661e223a799c88c275c4d651a9"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/wetsphere-threejs.html",
+      "bytes": 8805,
+      "sha256": "fe347f4f4951f337854baaa634c12307cac7ce13196762438acb4da26b0fe1dd"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/wobblysphere-threejs.html",
+      "bytes": 8113,
+      "sha256": "a4405594fa20873169e0b8b5de44629af0a31c4354edcc0b81fc7bbb74f6999e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-gallery/wooshysphere-threejs.html",
+      "bytes": 8979,
+      "sha256": "c43a315470577c5d24d4ea0b918057543a9aa0e09553b0b14009ea7736b1c26e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/3d-psrdnoise-tutorial-01.html",
+      "bytes": 7147,
+      "sha256": "bc623529bbcc14f3899e2caff80d311cc0a653045dd395b62940efe743a261bf"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/3d-psrdnoise-tutorial-02.html",
+      "bytes": 6425,
+      "sha256": "f4c56680e451040f39e6caafa1697addcf062a2f22920548525d26bf0017bbdc"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/3d-psrdnoise-tutorial-03.html",
+      "bytes": 8298,
+      "sha256": "db1d59cbca3611b1739949ddf844fc5eaea1d7b64f7327c9d12812b8c4c2e7e9"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/3d-psrdnoise-tutorial-04.html",
+      "bytes": 7784,
+      "sha256": "03cf8d0ee0c84ea42c45046a16df4a0499c2b0eb01a972baf88f154051e2eaf5"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/3d-psrdnoise-tutorial-05.html",
+      "bytes": 8519,
+      "sha256": "96b51967881a63cd262928d856945d9c4201be5121dc3aba0e5941c9a7f997d9"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/3d-psrdnoise-tutorial-06.html",
+      "bytes": 9004,
+      "sha256": "c3c93cc32e3119ece94f4bb5f12171b9f83434b5be17bd015000faff1b0e7635"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/3d-psrdnoise-tutorial-07.html",
+      "bytes": 12855,
+      "sha256": "7d134c227e1195716d67b9cd5efc9b9a73701e7f097a28197370e493372a853f"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/3d-psrdnoise-tutorial.css",
+      "bytes": 717,
+      "sha256": "8079a090f7d1bf45520e32ff17ffc6b482ed5fe9ee782212709ac504975b35ec"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/bumpmapping.pdf",
+      "bytes": 167778,
+      "sha256": "3a63a9c8fe78fb5c58fd7e5c77fcaa3c41e0d709ce72f447db406ba4a0ac911a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/index.html",
+      "bytes": 7147,
+      "sha256": "bc623529bbcc14f3899e2caff80d311cc0a653045dd395b62940efe743a261bf"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/js/OrbitControls.js",
+      "bytes": 26375,
+      "sha256": "02bb4ade710f3e607329e37a21f098bc3ac70eb6e33daf8a65e79f4db785e7b2"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/js/three.min.js",
+      "bytes": 610963,
+      "sha256": "a9d81ea63fdcb8add0b222e610b6f6a2e468dfb51b59a2210899918ac36ed3f7"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/_theme_template.scss",
+      "bytes": 3489,
+      "sha256": "6929b9a22383ed8a47b7000f74fba9a4eb93f00c6736609a4336e25420a63dcb"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/config.rb",
+      "bytes": 302,
+      "sha256": "ef1043a5f348b5f7000680a8f0671c172223ac7acff8af2c21088a60c3f14c25"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shCore.scss",
+      "bytes": 5014,
+      "sha256": "931e3c52eb8e57b285c757fd17f99aecfd32a3cce869f19e0ba617b28b8b233e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreDefault.scss",
+      "bytes": 54,
+      "sha256": "8a20f2ecb3fc6774b66c72918e60e88e4a81df893d724aec0ce0f1dc777e56b7"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreDjango.scss",
+      "bytes": 53,
+      "sha256": "65d1ae41d46f8cd0747db3fb50890c333135b82cad737b8772dbb9e32a6f1697"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreEclipse.scss",
+      "bytes": 54,
+      "sha256": "98c8b2ddbdcface4c3bc8a43c50c3e0a35f06881253467d5a83962c6c269b154"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreEmacs.scss",
+      "bytes": 52,
+      "sha256": "9e42d0692eea2231acc9d8d2152258a47b0c84e3342ef05a941e4306756b6fb1"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreFadeToGrey.scss",
+      "bytes": 57,
+      "sha256": "51d20e9a3621f81ff1e683fb1c9caa5b763bc1b7ac3bd058b86ea110b3be4449"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreMDUltra.scss",
+      "bytes": 54,
+      "sha256": "00e18b332f7ee0ceb6161c4bcdcb77264112cc6e29178ad49afbbdc19035739c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreMidnight.scss",
+      "bytes": 55,
+      "sha256": "64d0ba27e2d64f40f48fd704dbe2b0ca23038d47e05f9725c45feef8cfd3f976"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shCoreRDark.scss",
+      "bytes": 52,
+      "sha256": "3914e408fd31fec534da63100f015db7c50fd50ec2c7b4f385642014738dfe78"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeDefault.scss",
+      "bytes": 138,
+      "sha256": "a4822d6918d963e26112f68d254dc647f4681e382db80e5f85fd6a19e855319d"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeDjango.scss",
+      "bytes": 1039,
+      "sha256": "028fcd9656faa65f4ad005c2f0a52df700a9228ea09e20c71f214525be401ad6"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeEclipse.scss",
+      "bytes": 1326,
+      "sha256": "7452ce4e5484a0507cef97be12fc2d4b91b6e859b081b4b5b2d89daa3555adbd"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeEmacs.scss",
+      "bytes": 978,
+      "sha256": "6f871b395b01b180dc09c8c07bb77c74eef674cda0604c9f3cfe654e65a62499"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeFadeToGrey.scss",
+      "bytes": 1063,
+      "sha256": "df01b5571f255517dd58383d4f6ddf5c0cbae7ce8fbdce22020fdcdc1756e314"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeMDUltra.scss",
+      "bytes": 965,
+      "sha256": "d128e2b0f5148cf89778542529c484f49d92a65c20384c2120fd9b9d36ea61e5"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeMidnight.scss",
+      "bytes": 992,
+      "sha256": "fa34809730c1022a65f73a41dc0f7ea031e3a9cc0e86b78460fab260181b879b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/compass/shThemeRDark.scss",
+      "bytes": 1012,
+      "sha256": "f4b915d3db2613f40fa1e96c26a9dae83c5ee8fde89bbc450e4163dddfb42116"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/index.html",
+      "bytes": 6914,
+      "sha256": "f1ba77b4127d1ba502b6f83a2ca74823bc73c8479ef6498e996d77ab6ba7742f"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/LGPL-LICENSE",
+      "bytes": 7638,
+      "sha256": "9e524b67e30bd448c860934fad7a27226c0837a363fcb242974844f01956c4ae"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/MIT-LICENSE",
+      "bytes": 1061,
+      "sha256": "aac042ff9f8c091d7b183ad2ae9707170671dd8794c98b9f1c64d7872d08babe"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shAutoloader.js",
+      "bytes": 1451,
+      "sha256": "0841295a7e23dabc77c6deb5dc0d10e89a81db34c125f5c4acaffbd2ded3ebde"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushAppleScript.js",
+      "bytes": 8178,
+      "sha256": "e910d375025acb7942dd2a1afc0cad373d424a37610876636ef6bdccc5615c29"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushAS3.js",
+      "bytes": 2431,
+      "sha256": "9871cb70f85eee26668f7400c5efec0245311529c0ba0be27a31d535b39e9a8c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushBash.js",
+      "bytes": 2835,
+      "sha256": "4819e4b43b2b58bff731cf248d1014ab89250ad347fd0529c246385865e54974"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushColdFusion.js",
+      "bytes": 8296,
+      "sha256": "15b8bafb748aeaf8932635e5935b6b3f6ba6ee740cabf624d2d8f10594fed769"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushCpp.js",
+      "bytes": 5284,
+      "sha256": "a049c1d9058f34156daa5dbab591f5bee61161ebee3fc2fef081bfba1c244e1b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushCSharp.js",
+      "bytes": 2528,
+      "sha256": "df44c6cbb3944b3bfaac20e2666af037613853bef6a242dc2ede1fc8efdf63cc"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushCss.js",
+      "bytes": 5694,
+      "sha256": "d3c494b68b64e24bdc66748471fe73d49f0d5402e02029fd6acad00e1a1bd5b8"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushDelphi.js",
+      "bytes": 2382,
+      "sha256": "8ef1e291eec72ca3fff0921378c3a0d460d340b7c31704d3ab9d13d984b71296"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushDiff.js",
+      "bytes": 1057,
+      "sha256": "97f595d1bf336cea21f7caff224238fd1dc9e98f8d4608eb4e742c58e447ed14"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushErlang.js",
+      "bytes": 1712,
+      "sha256": "89fb5ef0ebb288764850672bc58c5782639a2085bfb140c313d7de8ab2bf6d66"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushGLSL.js",
+      "bytes": 2835,
+      "sha256": "21bbd58c05f23d743a99a3b6bd002a326155861d21d3d0c4bbb49ab2d80f6b9a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushGroovy.js",
+      "bytes": 3017,
+      "sha256": "14bbddd8b6c3bb08ecc293fed7d5941ef31a1f837f795a75687e7e5cc1cfea47"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushJava.js",
+      "bytes": 2101,
+      "sha256": "29c5f3b4457780a50847804a17dc6906b11f5dc0ecc78f943d7a488690277cf3"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushJavaFX.js",
+      "bytes": 2238,
+      "sha256": "15367145380ec842cc7f9ac4ee51ca3157b2c19062e5a1f7b625b6d6c2778a68"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js",
+      "bytes": 1649,
+      "sha256": "3f534a9cb3030831626f875de5e69f72e1cc020db2761b6ac8a0186ef4fff512"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPerl.js",
+      "bytes": 3176,
+      "sha256": "d1c7ec6f223e7b7541ab70c5486540f3bfa7b34ebda896f131847a12ff6c73ac"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPhp.js",
+      "bytes": 5246,
+      "sha256": "eeb0f65854972899fc99b17cf25ea68831cfb238e1e41654135c69b8a6f9fd99"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPlain.js",
+      "bytes": 750,
+      "sha256": "4916a1324a99bcafb7b7e8b333d9b1fa37c427950bb0411d38baac12846c17ad"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPowerShell.js",
+      "bytes": 3911,
+      "sha256": "3705039e346c2f75e0f0e8a2c56e8a08ac290def3baa82da68c33263ec7e4d23"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushPython.js",
+      "bytes": 2437,
+      "sha256": "8ec5a39b87d75a7a2967fc06474337c15a9ca1978ec4a8843818fc24897e6475"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushRuby.js",
+      "bytes": 2188,
+      "sha256": "85b5c4f0308c8cd394ae84182ed4e60ba70c77d43423895641c8555e10b5a839"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushSass.js",
+      "bytes": 5982,
+      "sha256": "0967b3d04a276ae4b656f36714cf28c0f691c3f5c2dd6d36eb2f1fbaf0f714cc"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushScala.js",
+      "bytes": 1892,
+      "sha256": "575d4786edd00d96154cd1b36a7fb19eaa6a1bec780b64c73060855882630ee5"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushSql.js",
+      "bytes": 3054,
+      "sha256": "83796b8fe75cbbdbb444119072f952caa0acf11fb0f9879ec9994da31567de68"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushVb.js",
+      "bytes": 2281,
+      "sha256": "dc7ad24d7c13335b46b25572c11e1e0238069d54900638d884a53c44d37be5b2"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shBrushXml.js",
+      "bytes": 1998,
+      "sha256": "fb1fe49a904a4fda3ed82d2f88048b2ae88c217980b6bf2163c07f048663b43e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shCore.js",
+      "bytes": 16175,
+      "sha256": "584a26f39cef2db245f41d4f6b8e3d0f7dfac5c06f0f454a49dfb94f6fb1517b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/scripts/shLegacy.js",
+      "bytes": 1870,
+      "sha256": "7d02302bbb9594600c23c2b73fda9bb95ce35e0bdcb9c9d90c87f48ebbe41d33"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/src/shAutoloader.js",
+      "bytes": 2693,
+      "sha256": "f6114696b95325ec029bf03e5c6e5f035565f59eb1fab81f1b5db35fb521340a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/src/shCore.js",
+      "bytes": 43502,
+      "sha256": "f322b22fcbd78f83352698de81520743555b66270c505ca05edf82a41f45a939"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/src/shLegacy.js",
+      "bytes": 3675,
+      "sha256": "760fd5e43231d8b646ec5830ce8c7493fc61af84b629e983680c46e75d4cca5a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shCore.css",
+      "bytes": 6204,
+      "sha256": "fdfaac800799151ba7fa5ff6997892070f6318f58cc61ff29cf19621f8c9b2b8"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreDefault.css",
+      "bytes": 8704,
+      "sha256": "abc7b3b2309b910dd44314a6a55d079c72a8023dd030a6063d6af41a2020e2fd"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreDjango.css",
+      "bytes": 8805,
+      "sha256": "77eb0db384a99893edbe0fdd4f87a3432e61cbf3415fa1b09ad4075ef6be584b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreEclipse.css",
+      "bytes": 9023,
+      "sha256": "8bb4eae83d96d51fd1bee9218b336a87073afaaf443b9a27e399d997cc5dacc4"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreEmacs.css",
+      "bytes": 8662,
+      "sha256": "87062a6bd4dac7d2b9e4925263b20eef8d5c8f82312714f6d03e226466fdb452"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreFadeToGrey.css",
+      "bytes": 8739,
+      "sha256": "fa5eab4090ffac97068befe4f160432137739fd296c4cdb9073f09a1302ea500"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreMDUltra.css",
+      "bytes": 8659,
+      "sha256": "3109efddd5920b120fc3c11ecf3d7627b51047e2da94ac0b165b142ab1c638fb"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreMidnight.css",
+      "bytes": 8680,
+      "sha256": "1a86757b3e57c1295b1cb3ca00c108191952892fe7662f075a407d2365df9276"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shCoreRDark.css",
+      "bytes": 8676,
+      "sha256": "800aaf549c4c44945188709bf0e08d4c8dc7ce1d8aea1af2c34acb466ac13037"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeDefault.css",
+      "bytes": 2877,
+      "sha256": "9718c68f663cfdcef66e2b91917e46e3b83e31c9691a2ff658f9bd55c73bc649"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeDjango.css",
+      "bytes": 2978,
+      "sha256": "1ad8615ad8a968d420ef89e68303ec92d904ae71cf3c2bb00f9f62b0136d9fce"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeEclipse.css",
+      "bytes": 3193,
+      "sha256": "4d37bb5ab00d2cdccd6afecfc41e31cb01fbde11e1787aa7cdd0f99f5949a9bd"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeEmacs.css",
+      "bytes": 2835,
+      "sha256": "be963c340becffab67a43736694ac8ae4aa707e6064a11816457ea784585ae28"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeFadeToGrey.css",
+      "bytes": 2912,
+      "sha256": "60012103f5824c37032ea9fddbdf64a7fdda6e7bd5e143b9828525568089668b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeMDUltra.css",
+      "bytes": 2832,
+      "sha256": "0a1e15a1920078e5be6cefe0300d3ece42cb46f54e7b104cffed8e9ad71035c0"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeMidnight.css",
+      "bytes": 2853,
+      "sha256": "dc88aa6315f6f0301382df26fc4cbc8db5aa27423d2b64c087a7084b3cda722c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/styles/shThemeRDark.css",
+      "bytes": 2849,
+      "sha256": "d88580c72babc35a7e06060f46e510b9267fe98876e0ebfcfb956200cfc92bc6"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/brushes/sass.html",
+      "bytes": 4834,
+      "sha256": "4af007ba0e30373be71229a6b9bae13e385ade18c43cb2594a631929f812fd4d"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/brushes_tests.html",
+      "bytes": 4048,
+      "sha256": "2bc9102cdb257eab66af500bdfb231c66e28067e3e609eddb4657745ec4079d8"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/001_basic.html",
+      "bytes": 728,
+      "sha256": "f50d2b61b80b048069201a7ef98ec520a755c256180b5080e4d46dbdde35575d"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/002_brushes.html",
+      "bytes": 1375,
+      "sha256": "2f2c48d857134557a8ff330a26d7ac299cc8cba3a90f391c26dc4fc4333c50f9"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/003_script_tag.html",
+      "bytes": 710,
+      "sha256": "67e6cf2038592cd221f8a4dd17a13670993fe2a6c10bea6150bd43bc7d2dd925"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/004_url_parsing.html",
+      "bytes": 1139,
+      "sha256": "1f1060652cb86be9df219f59c7260877b090e96c4411ed6ed8b8285e65f34848"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/005_no_gutter.html",
+      "bytes": 735,
+      "sha256": "c7ae6dc6c728143519ec0cc84987436a01f32702a28f46a8fc920fd52c31ecb4"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/006_pad_line_numbers.html",
+      "bytes": 1010,
+      "sha256": "8a5cc854b522f8533e9b6b45cd481e8ee6639c1fb639caef9eeb26d4969cb76b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/007_collapse.html",
+      "bytes": 1862,
+      "sha256": "bc68528bddac070ff50f7fcfbf242962a05a1511ae683d2536a1235a4dc78f65"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/007_collapse_interaction.html",
+      "bytes": 850,
+      "sha256": "22c8f65e81d531584a990f6335f18b08a2439f0f8d82bac7a5b9ceff4099c84e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/008_first_line.html",
+      "bytes": 464,
+      "sha256": "54810fe54c846c0588cc1863e5b3b28928d4e62b86702e4b4fb3f4fe9d450317"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/009_class_name.html",
+      "bytes": 641,
+      "sha256": "408e2dd93d34c5c0cc6b90ff19db472a8dbfc060d9ba2b2c5059058bf25d8067"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/010_highlight.html",
+      "bytes": 1895,
+      "sha256": "77102f89de86c18231ac53548e46bdea3eb79a56631949aa45f4cedad31ed31b"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/011_smart_tabs.html",
+      "bytes": 2018,
+      "sha256": "a670c077d3308673563cc19bd16b74406a0cfaf2f1bea5aa47e160f3599345ca"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/012_server_side.html",
+      "bytes": 621,
+      "sha256": "840c16286fc1f656cb1065ceef9f02bd678c60d1c627566fe097dcd834c57b98"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/013_html_script.html",
+      "bytes": 673,
+      "sha256": "10e96c74cdef3171aa42887b7a5ac2cf09427e47369d32cb63a59f3fff7b6f2d"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/3d-tutorial/syntaxhighlighter_3.0.83/tests/cases/014_legacy.html",
+      "bytes": 1719,
+      "sha256": "60234f38d3668bdf938766bffeee734c3a773679450fc53f55662f721817b43a"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/index.html",
+      "bytes": 1187,
+      "sha256": "a2766a458c3fb0a568913c44560726140eb275b725092de5efb2b37e6bef5f11"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/psrdnoise.css",
+      "bytes": 76,
+      "sha256": "4144aefcda86b33cc13fd726810eaee1f80473c4c652ea768e0dbae93369f390"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/test/noisebench-mediump.html",
+      "bytes": 3458,
+      "sha256": "6f94ed4c1de4e68c2ff3af7d77ea0b14005e6c6bfe411f029fde87340c3dfd75"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/test/psrdnoise2-highp.html",
+      "bytes": 2940,
+      "sha256": "6333fecb9de51bc45bc0c1575d32a5769a005554102a23b5ca5c12369b63deb3"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/test/psrdnoise2-mediump.html",
+      "bytes": 3588,
+      "sha256": "a8ee5c7bb011c5341c4476f06a99d9d624ed8ebcb314f50fc204e6eff7d17ef7"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/test/showprecision.html",
+      "bytes": 3168,
+      "sha256": "ac12ca305bd33e40c7e2108f227d91e0a88ebfb7611768913b09609142f8e875"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/docs/test/webgl-onequad.js",
+      "bytes": 5601,
+      "sha256": "b09694e796e9738cba68d057fd7ed7fd61011af0e778da776885556fd0ee0172"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/README.md",
+      "bytes": 2871,
+      "sha256": "55daba2b16c716391a36bb935d1e4d2239ac3d484a9afa82c57fa3dfbc4d96ec"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/cellular2D.hlsl",
+      "bytes": 2103,
+      "sha256": "5550aa2ab88301be89a8ecfbc738b4bc8eeac75b6fca9e51b88714cdfda51162"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/cellular2x2.hlsl",
+      "bytes": 1790,
+      "sha256": "72ff3303c0a39ac5c6cbb935b3f0dbdc09d60b38aabdb8eb3d608f74158b1740"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/cellular2x2x2.hlsl",
+      "bytes": 2621,
+      "sha256": "9cd0fd3068312dff31138000965c23a1027037b183daedff692355614dbbce3f"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/cellular3D.hlsl",
+      "bytes": 5850,
+      "sha256": "60a8dcde48d6806d6bda36aa35119e4d2c6f654aaa5ffb205d5d2d657cd7b439"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/classicnoise2D.hlsl",
+      "bytes": 2991,
+      "sha256": "c0533ccf5e51c004938a68b35ffee62d87943e68fe219284492ec83a83a0b0bf"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/classicnoise3D.hlsl",
+      "bytes": 5730,
+      "sha256": "07ddebfa83b11409f336f9895bf53e9284732185490a5df3d9956d0cdac7c04e"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/classicnoise4D.hlsl",
+      "bytes": 11569,
+      "sha256": "bfb5bf6d85f5f60afd0e291ad66ff6fa93187f15a43fcc5866177e9835ac266d"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/LICENSE",
+      "bytes": 1145,
+      "sha256": "bdafce1bb01517c9ae6c4f3620c01340790b5e9d039ae9e356347d1174250916"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/noise2D.hlsl",
+      "bytes": 2031,
+      "sha256": "8c9e1581d67596339bc69023adf6aaf121b4ba47c4f629d2708e4b06b44b0831"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/noise3D.hlsl",
+      "bytes": 2808,
+      "sha256": "5d617a72b1f5797240f50655c20cf1d5bd88fe1a2b7d5d2de74f7b053f08e8f6"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/noise3Dgrad.hlsl",
+      "bytes": 3035,
+      "sha256": "33b2e381ffe411cf5888b1a5be15b3d159c5ae10c9283804a7c0ddc71841aefa"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/noise4D.hlsl",
+      "bytes": 3492,
+      "sha256": "c1835b0bc78991d82f6dcf4efab0ffd9786010cdf5dcfe61036d86e4bb1c11c2"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/psrdnoise2D.hlsl",
+      "bytes": 15315,
+      "sha256": "406b4f5366b7e6a23e4e11f045e2555dcc0b3fc77cd73781c58e2300e9c191fb"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/ashima/README.md",
+      "bytes": 1545,
+      "sha256": "a0bc7e7cf49e68d3ef47e20641140dc04fe20969cdfb71e510caf3c50979e4c1"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/common/glsl-translations.hlsl",
+      "bytes": 1878,
+      "sha256": "55f454dec68dfd3de86d5fe8e93ad6b998e70b6ee7e1049b82e11c927a583e35"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/common/stegu-math.hlsl",
+      "bytes": 2013,
+      "sha256": "36b38f15fda297ae02a24dca129a3d5cb94f82c8247b8caa8ca1b14d23fca34f"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/LICENSE",
+      "bytes": 1185,
+      "sha256": "d5a9a25541808d0eeebeb06c67ee03e000e03b63d8182ace1dd21add0eafedef"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/noise-include-all.hlsl",
+      "bytes": 880,
+      "sha256": "4e4c1370a32eb63620b01877d3b0045117f8d74b77fd17418c5d2b38b4ce28cb"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/README.md",
+      "bytes": 857,
+      "sha256": "25256b05a1599103c847fba0bff241cd8a16a3a799874a111460935caf4914ea"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/stegu-psrdnoise/LICENSE.md",
+      "bytes": 2133,
+      "sha256": "46c2e14101000440528b2e2d35b3932eca5fa5f7e9af21ef2c25b61d3eef7b29"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/stegu-psrdnoise/mpsrdnoise2.hlsl",
+      "bytes": 2427,
+      "sha256": "7e57772d93c5f9738e3fc217875205ea03eccab0c6cfd8ef37af47afef8e0b70"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/stegu-psrdnoise/psrddnoise2.hlsl",
+      "bytes": 6652,
+      "sha256": "efa033836e244de1fc54082f22ff3248bb0daa0cf20282b1f8e5d9de6d13ed58"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/stegu-psrdnoise/psrddnoise3.hlsl",
+      "bytes": 11799,
+      "sha256": "142f9ea2ea66170e2ad3a1e8a72760307097935a8d9409dd9a7c43c43c9c9634"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/stegu-psrdnoise/psrdnoise2.hlsl",
+      "bytes": 5881,
+      "sha256": "9c86b68c1e1fd04c0e8d85b2490c4a6398266630e29aca2784ffe9b08eba2dcd"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/stegu-psrdnoise/psrdnoise3.hlsl",
+      "bytes": 10772,
+      "sha256": "1e4921325dfdfbdc4618550478cf3e25985e0afee73dff1fc17742f78c4f03bf"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/hlsl/stegu-psrdnoise/README.md",
+      "bytes": 2623,
+      "sha256": "29c51d99fc0dbd6d676192bfc5473d706d0cab22bc4d06059aba5ce9e21558fd"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/mpsrdnoise2.glsl",
+      "bytes": 2178,
+      "sha256": "df884880cb31048274c4d713e4d1e2a3cac1b4cfc7d760bbfd6f121005ab7d9c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/psrddnoise2.glsl",
+      "bytes": 6549,
+      "sha256": "ed9d5b6039c691212999b28a7ade46413b284df8aee51225525c8d497b9125d0"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/psrddnoise3.glsl",
+      "bytes": 11656,
+      "sha256": "66ee13f8d565d9cb0c462debfd674d44c67098f1745cdb86ecda76f25e6bf04c"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/psrdnoise2-min.glsl",
+      "bytes": 1719,
+      "sha256": "73079e4b25d144c11deebf52ad66f7fea44000c793eb055f093cdd823245b592"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/psrdnoise2.glsl",
+      "bytes": 5672,
+      "sha256": "3abb8a203480c79363677995f38c8ffeb1fd9d1eb941473a6f3c4a07532458a6"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/psrdnoise2.wgsl",
+      "bytes": 10187,
+      "sha256": "7f5b7f4b62467cee53d41f1753cc213cf9a05e0f19821841194b6040db312e75"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/psrdnoise3-min.glsl",
+      "bytes": 2809,
+      "sha256": "d6eba708623f202ece9b37ca3067f83b5b06774604f067e73118eb8b575a1f86"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/psrdnoise3.glsl",
+      "bytes": 10483,
+      "sha256": "766069cb5b02eb3366c82c7ec31d5d22972b7cb26e1704f29654b7010d680f33"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/psrdnoise3.wgsl",
+      "bytes": 25252,
+      "sha256": "b4e3c2c77b277fce87b86149f2adabd78df1d3e3ff2174797cc585c5836bfdb5"
+    },
+    {
+      "path": "resources/vendor/psrdnoise/src/README.md",
+      "bytes": 2133,
+      "sha256": "46c2e14101000440528b2e2d35b3932eca5fa5f7e9af21ef2c25b61d3eef7b29"
+    },
+    {
+      "path": ".agents/skills/web-design-guidelines/SKILL.md",
+      "bytes": 1231,
+      "sha256": "f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f"
+    },
+    {
+      "path": "resources/licenses/vercel-labs--agent-skills/NOTICE.txt",
+      "bytes": 360,
+      "sha256": "e51a5b1fe328633f4de5c10784960609c943095116191b27317fa5e8aa041549"
+    },
+    {
+      "path": "resources/references/web-interface-guidelines/command.md",
+      "bytes": 8055,
+      "sha256": "d246b026f4f29b5823a9cc857f9edf3d2507002e055e32040cadeaf3b38e0234"
+    },
+    {
+      "path": "resources/references/web-interface-guidelines/LICENSE",
+      "bytes": 1068,
+      "sha256": "6cd1609c9c12233507cdd2ce0d32e9a721e3c27494951be06b90090deeeb7af2"
+    }
+  ]
+}

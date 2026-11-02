@@ -9,7 +9,7 @@ from pathlib import Path
 from aura_agents.adapter import BasetenAdapter, MODEL
 from aura_ops.docker import DockerTarget
 from aura_ops.models import OpsError, Policy
-from aura_ops.investigator import OpsInvestigator
+from aura_ops.investigator import OpsInvestigator, INVESTIGATION_MAX_TOKENS
 from aura_ops.redaction import redact_text
 from aura_ops.service import OpsService
 from aura_ops.store import OpsStore
@@ -32,12 +32,12 @@ class BudgetAdapter:
         # Also cap input bytes; not a token-price or dollar-billing estimate.
         if len(json.dumps(messages, ensure_ascii=False).encode()) > 160_000:
             raise OpsError("demo_input_limit", "The investigation input limit was reached.", 429)
-        if options.get("max_tokens", 4096) > 4096:
+        if options.get("max_tokens", 4096) > INVESTIGATION_MAX_TOKENS:
             raise OpsError("demo_output_limit", "The investigation output limit was reached.", 429)
         self.ledger.reserve_call(self.run_id)
         result = await self.delegate.complete(messages, **options)
         self.records.append({"model": result.requested_model, "duration_ms": result.duration_ms,
-                             "attempts": result.attempts,
+                             "attempts": result.attempts, "finish_reason": result.finish_reason,
                              "usage": result.usage.model_dump() if result.usage else None})
         return result
 
@@ -191,11 +191,14 @@ class DemoRunner:
                                     and len(proposals) == 1 and proposals[0].get("automatic") is True
                                     and proposals[0].get("authorization") == "policy"
                                     and bool(proposals[0].get("dispatch_attempted_at")) and bool(adapter.records))
+                        incomplete = (row.get("error") or {}).get("code") == "incomplete_response"
                         save("recovered" if verified else "needs_help", verified=verified,
+                             error_code="incomplete_response" if incomplete else None,
                              observation=public_observation(measured),
                              verification={k: verification.get(k) for k in
                                            ("sample_count", "incomplete_samples", "duration_seconds", "kind", "root_cause_fixed")},
-                             error=None if verified else "AURA could not verify an automatic recovery in this run.")
+                             error=None if verified else ("The model did not finish its answer. No recovery was performed. You can try again."
+                                if incomplete else "AURA could not verify an automatic recovery in this run."))
                         report["recovery_seconds"] = round(time.time() - fault_at, 3) if verified else None
                         break
                     if row["phase"] == "awaiting_approval" and service._task and service._task.done():

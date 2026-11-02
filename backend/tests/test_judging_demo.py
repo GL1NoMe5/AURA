@@ -211,6 +211,26 @@ def test_budget_adapter_reserves_before_failure_and_rejects_late_call(config):
     asyncio.run(scenario())
 
 
+def test_demo_generation_budget_includes_reasoning_and_cannot_be_exceeded(config):
+    class Delegate:
+        ready = True
+        async def complete(self, messages, **options):
+            assert options['max_tokens'] == 8192
+            return SimpleNamespace(requested_model='test', duration_ms=1, attempts=1,
+                                   finish_reason='stop', usage=None)
+    async def scenario():
+        ledger = DemoLedger(config); rid, _ = ledger.reserve('test', str(uuid.uuid4()))
+        adapter = BudgetAdapter(Delegate(), ledger, rid)
+        with pytest.raises(OpsError, match='output limit'):
+            await adapter.complete([], max_tokens=8193)
+        assert ledger.row(rid)['calls'] == 0
+        await adapter.complete([], max_tokens=8192)
+        assert ledger.row(rid)['calls'] == 1
+        assert adapter.records[0]['finish_reason'] == 'stop'
+        ledger.close()
+    asyncio.run(scenario())
+
+
 def test_fixture_ownership_and_static_topology(config):
     fixture = LinkdingFixture(config,'a'*32,'b'*32)
     fixture.image_id = 'sha256:'+'1'*64
@@ -323,7 +343,7 @@ def test_input_output_limits_precede_paid_reservation(config):
     async def scenario():
         ledger = DemoLedger(config); rid, _ = ledger.reserve('test', str(uuid.uuid4()))
         adapter = BudgetAdapter(Adapter(), ledger, rid)
-        for messages, options in (([{'role':'user','content':'x'*160001}], {}), ([], {'max_tokens':4097})):
+        for messages, options in (([{'role':'user','content':'x'*160001}], {}), ([], {'max_tokens':8193})):
             with pytest.raises(OpsError): await adapter.complete(messages, **options)
         assert ledger.row(rid)['calls'] == 0
         ledger.close()

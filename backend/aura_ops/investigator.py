@@ -12,6 +12,7 @@ from .models import Diagnosis, Finding, StrictModel, TargetSpec, OpsError
 from .source import SourceIndex
 from .redaction import redact_data
 
+INVESTIGATION_MAX_TOKENS = 8192  # Includes the model's reasoning and final JSON.
 
 class RoleOutput(StrictModel):
     summary: str = Field(min_length=1, max_length=1500)
@@ -97,14 +98,19 @@ class OpsInvestigator:
                     "\nFollow this exact JSON Schema, including array/string limits:\n" +
                     json.dumps(response_schema, separators=(",", ":"))},
                 {"role": "user", "content": "EVIDENCE DATA:\n" + packet},
-            ], cancel_event=cancel_event, max_tokens=4096)
+            ], cancel_event=cancel_event, max_tokens=INVESTIGATION_MAX_TOKENS)
             record = {"agent_id": role, "requested_model": result.requested_model,
                       "response_model": result.response_model, "duration_ms": result.duration_ms,
                       "attempts": result.attempts,
+                      "finish_reason": result.finish_reason,
                       "usage": result.usage.model_dump() if result.usage else None}
             calls.append(record)
             await emit("provider_usage", record)
             if result.finish_reason != "stop" or not result.content:
+                await emit("provider_output_rejected", {"agent_id": role,
+                    "issues": [{"type": "incomplete_response", "field": "response"}],
+                    "finish_reason": result.finish_reason,
+                    "response_chars": len(result.content or "")})
                 raise ProviderOutputError("incomplete_response")
             try:
                 parsed = schema.model_validate_json(result.content, strict=True)

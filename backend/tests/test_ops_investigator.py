@@ -95,7 +95,7 @@ def test_prompt_exposes_limits_and_rejection_diagnostics_exclude_model_input():
 def test_two_followup_rounds_are_bounded_and_measurements_are_preserved():
     async def run():
         async def callback(messages, kwargs):
-            assert kwargs["max_tokens"] == 4096
+            assert kwargs["max_tokens"] == 8192
             return answer(synthesis() if "Synthesize the evidence" in messages[0]["content"] else role_output(refresh=True))
         adapter = Adapter(callback)
         refreshes = []
@@ -108,6 +108,27 @@ def test_two_followup_rounds_are_bounded_and_measurements_are_preserved():
         assert len(result["calls"]) == 7
         assert result["evidence"]["observation.followup2"] == {"sample": 2}
         assert "observation.followup3" not in result["evidence"]
+    asyncio.run(run())
+
+
+def test_truncated_synthesis_is_rejected_even_when_json_would_be_valid():
+    async def run():
+        events = []
+        async def record(kind, payload):
+            events.append((kind, payload))
+        async def callback(messages, kwargs):
+            assert kwargs['max_tokens'] == 8192
+            result = answer(synthesis() if 'Synthesize the evidence' in messages[0]['content'] else role_output())
+            if 'Synthesize the evidence' in messages[0]['content']:
+                result.finish_reason = 'length'
+            return result
+        adapter = Adapter(callback)
+        with pytest.raises(ProviderOutputError, match='incomplete_response'):
+            await OpsInvestigator(adapter).diagnose(spec(), {'observation.current': {}}, asyncio.Event(), record)
+        assert len(adapter.messages) == 3  # No unbounded retries or substitute decision.
+        assert [v for k, v in events if k == 'provider_usage'][-1]['finish_reason'] == 'length'
+        assert [v for k, v in events if k == 'provider_output_rejected'][-1]['finish_reason'] == 'length'
+        assert not any(k == 'agent_finished' and v['agent_id'] == 'synthesis' for k, v in events)
     asyncio.run(run())
 
 

@@ -113,7 +113,8 @@ controller.
 Default limits are one active recovery, 2 runs per browser session, 20 total
 runs, 100 logical model completions, at most 7 completions per run, and an
 8-minute run deadline. Each completion has at most one transport retry, a
-4096-token output limit and a 160,000-byte input limit. A new run requires room
+8192-token generation limit (reasoning and final answer combined) and a
+160,000-byte input limit. A new run requires room
 for its entire possible 7-call allocation. Failed requests consume their
 reservation. A 60-second cooldown separates completed runs.
 
@@ -153,6 +154,14 @@ cross-session isolation, persistent quotas, input/output bounds, cancellation
 during preparation, cleanup ownership, blocked cleanup and interrupted startup.
 They do not replace real Linux-host deployment acceptance or guarantee that
 every model response will succeed.
+
+On 3 November, a live synthesis call exhausted the previous 4096-token generation
+budget almost entirely on reasoning and stopped before a complete answer. The
+controller rejected it as `incomplete_response`. The generation allowance is now
+8192 tokens; call counts, deadlines and validation are unchanged. A subsequent
+cloud check recovered in 96.912 seconds with three completed model calls and
+18 complete verification observations. This confirms the updated path works,
+but is not a measured success-rate guarantee.
 
 ## Local verification, 2 November 2026
 

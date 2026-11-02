@@ -13,6 +13,7 @@ class DemoSettings:
     data: Path
     origin: str
     access_code: str
+    public_access: bool = False
     context: str = "default"
     image: str = "sissbruecker/linkding@sha256:5e37e0c0a3cb915ab02e432a0c4026e8ad8b3a0f27c9ca9b7cc4feff7d2eefce"
     port: int = 18097
@@ -48,6 +49,7 @@ class DemoSettings:
         root = Path(__file__).resolve().parents[2]
         return cls(root=root, data=Path(os.environ.get("AURA_DEMO_DATA", str(root / ".local/judging-demo"))).resolve(),
                    origin=os.environ["AURA_DEMO_ORIGIN"], access_code=os.environ["AURA_DEMO_ACCESS_CODE"],
+                   public_access=os.environ.get("AURA_DEMO_PUBLIC_ACCESS") == "1",
                    context=os.environ.get("AURA_DEMO_DOCKER_CONTEXT", "default"),
                    max_runs=int(os.environ.get("AURA_DEMO_MAX_RUNS", "20")),
                    max_calls=int(os.environ.get("AURA_DEMO_MAX_CALLS", "100")))

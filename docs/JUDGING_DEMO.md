@@ -1,13 +1,12 @@
 # Live judging demonstration
 
 The `/try` page runs a real, bounded configuration recovery on a disposable
-Linkding instance. The judge supplies a demo access code, never a Baseten key.
+Linkding instance. The hosted demo is open without a code or a Baseten key.
 The normal local AURA API is not exposed by this server.
 
 **Open [the hosted demo](https://aura.34.70.253.200.sslip.io/try).**
-Use the demo access code supplied with the submission. Visitors do not need a
-Google Cloud account, Docker, or their own API key. The code is shared separately
-with intended testers and is not included in this public repository.
+Visitors do not need a Google Cloud account, Docker, or their own API key.
+The hosted demo has a shared cap on runs and model requests.
 
 ## What the visitor runs
 
@@ -124,7 +123,7 @@ person's verified identity; deleting cookies does not bypass the shared cap.
 These are request bounds, **not a dollar budget or confirmed billing amount**.
 Inspect the provider's billing separately. VM costs are separate from Baseten.
 
-The only visitor inputs are an access code, a new-run request and cancellation
+The visitor can open a session, request a new run and cancel
 of their own run. There is no endpoint for arbitrary targets, prompts, shell
 commands, model names, deployment approval or provider proxying. Request bodies
 are bounded to 1 KiB. Sessions use opaque HttpOnly/SameSite cookies, Secure under

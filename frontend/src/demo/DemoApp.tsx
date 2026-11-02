@@ -13,7 +13,7 @@ type Run = { run_id: string; phase: string; verified: boolean; finished_at?: num
   verification?: {sample_count: number; incomplete_samples: number; duration_seconds: number};
   agents?: {type: string; agent: string; summary: string}[];
   calls: {model: string; duration_ms: number; attempts: number; usage?: {total_tokens?: number}}[] };
-type Status = { authenticated: boolean; provider_ready: boolean; busy: boolean; run: Run | null;
+type Status = { authenticated: boolean; public_access?: boolean; provider_ready: boolean; busy: boolean; run: Run | null;
   limits: {runs_per_visit: number; calls_per_run: number} };
 
 const labels: Record<string, string> = {
@@ -137,7 +137,10 @@ export default function DemoApp() {
       {run?.cleanup_error && <p className="demo-message">{run.cleanup_error}</p>}
       {!connected && state && <p className="demo-message" role="status">Connection lost. The result below is the last received update.</p>}
       {error && <p className="demo-message" role="alert">{error}</p>}
-      {!state?.authenticated ? <form className="demo-access" onSubmit={e => { e.preventDefault(); void command('session', {code}).then(ok => { if (ok) setCode(''); }); }}>
+      {!state?.authenticated && state?.public_access ? <div className="demo-actions">
+        <button className="start-button" disabled={pending || !connected} onClick={() => void command('session', {code: ''})}>{pending ? 'Opening…' : 'Open demo'}</button>
+        <small>No account or API key needed</small>
+      </div> : !state?.authenticated ? <form className="demo-access" onSubmit={e => { e.preventDefault(); void command('session', {code}).then(ok => { if (ok) setCode(''); }); }}>
         <label htmlFor="demo-code">Demo access code</label>
         <div><input id="demo-code" type="password" autoComplete="off" value={code} onChange={e => setCode(e.target.value)} maxLength={128} required placeholder="Provided with the submission"/>
           <button type="submit" disabled={pending || !connected}>{pending ? 'Opening…' : 'Continue'}</button></div>

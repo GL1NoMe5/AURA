@@ -124,7 +124,7 @@ def create_demo_app(settings=None, *, runner_factory=DemoRunner):
         ledger = app.state.ledger
         viewer = ledger.session(request.cookies.get(COOKIE))
         row = ledger.latest(viewer) if viewer else None
-        return {"authenticated": bool(viewer), "provider_ready": app.state.runner.ready(),
+        return {"authenticated": bool(viewer), "public_access": settings.public_access, "provider_ready": app.state.runner.ready(),
                 "busy": bool(ledger.active()), "run": json.loads(row["report"]) if row else None,
                 "limits": {"runs_per_visit": settings.session_runs, "calls_per_run": settings.calls_per_run},
                 "mode": "live", "model": "meta-models/muse-spark-open-1026"}
@@ -135,7 +135,7 @@ def create_demo_app(settings=None, *, runner_factory=DemoRunner):
         ledger.login_attempt()
         data = body(request, ("code",))
         code = data["code"]
-        if not isinstance(code, str) or not hmac.compare_digest(code.encode(), settings.access_code.encode()):
+        if not isinstance(code, str) or (not settings.public_access and not hmac.compare_digest(code.encode(), settings.access_code.encode())):
             raise OpsError("invalid_code", "That access code was not recognized.", 401)
         # An existing authenticated visit keeps its quota rather than gaining a new session.
         token = request.cookies.get(COOKIE)

@@ -158,6 +158,26 @@ def test_secure_cookie_for_public_origin(config):
     asyncio.run(scenario())
 
 
+def test_public_access_keeps_origin_and_global_limits(config):
+    async def scenario():
+        public = replace(config, public_access=True, max_runs=1)
+        app = create_demo_app(public, runner_factory=FakeRunner)
+        async with app.router.lifespan_context(app):
+            async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url=public.origin) as client:
+                headers = {'Origin': public.origin, 'X-Aura-Demo': '1'}
+                assert (await client.get('/api/demo/status')).json()['public_access'] is True
+                assert (await client.post('/api/demo/session', json={'code': ''})).status_code == 403
+                assert (await client.post('/api/demo/session', json={'code': ''}, headers=headers)).status_code == 200
+                first = await client.post('/api/demo/runs', json={}, headers={**headers, 'Idempotency-Key': str(uuid.uuid4())})
+                assert first.status_code == 202
+                app.state.ledger.save(first.json()['run_id'], {}, finished=True)
+                client.cookies.clear()
+                await client.post('/api/demo/session', json={'code': ''}, headers=headers)
+                second = await client.post('/api/demo/runs', json={}, headers={**headers, 'Idempotency-Key': str(uuid.uuid4())})
+                assert second.status_code != 202
+    asyncio.run(scenario())
+
+
 def test_login_rate_limit(config):
     ledger = DemoLedger(config)
     for _ in range(10): ledger.login_attempt()

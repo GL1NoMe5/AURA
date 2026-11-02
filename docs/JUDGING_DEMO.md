@@ -4,6 +4,11 @@ The `/try` page runs a real, bounded configuration recovery on a disposable
 Linkding instance. The judge supplies a demo access code, never a Baseten key.
 The normal local AURA API is not exposed by this server.
 
+**Open [the hosted demo](https://aura.34.70.253.200.sslip.io/try).**
+Use the demo access code supplied with the submission. Visitors do not need a
+Google Cloud account, Docker, or their own API key. The code is shared separately
+with intended testers and is not included in this public repository.
+
 ## What the visitor runs
 
 1. Create a fresh Linkding database and one test bookmark, with no user data.
@@ -98,9 +103,11 @@ After configuring a public domain, a local health check therefore uses:
 curl --fail -H 'Host: demo.example.com' http://127.0.0.1:8019/health
 ```
 
-Google Cloud provisioning, the real domain, HTTPS certificate issuance and an
-external browser check must still be performed on the eventual server. The
-GitHub Pages site is static and cannot host this Python/Docker controller.
+The hosted instance runs on a dedicated Google Cloud e2-medium VM with 4 GiB
+RAM, Ubuntu 24.04 and a 30 GB disk. Caddy serves a verified Let's Encrypt
+certificate. Only HTTP/HTTPS are publicly reachable; SSH uses Google IAP.
+The GitHub Pages site hosts the film and links to this separate Python/Docker
+controller.
 
 ## Limits and stored data
 
@@ -166,5 +173,33 @@ The page was reloaded during verification and reconnected to the same run.
 The result is one successful configuration recovery, not a success-rate study.
 Private evidence: `.local/judging-demo/live-result.json`, with production
 investigation evidence under its corresponding `runs` directory. No code-fix
-claim is attached to this availability result. Native Linux deployment and
-external HTTPS acceptance remain pending.
+claim is attached to this availability result.
+
+## Hosted verification, 2 November 2026
+
+One complete run was started in Chrome through the public HTTPS page on the
+dedicated Google Cloud Linux host. It used the real Baseten adapter and the
+same production investigation, policy, action and verification code.
+
+| Measurement | Result |
+| --- | --- |
+| Fault introduction to independently verified recovery | 97.787 seconds |
+| Model completions / transport attempts | 3 / 3 |
+| Provider-reported tokens | 27,684 total (19,163 input; 8,521 output) |
+| Production verification | 18 observations; 0 incomplete; 15.760 seconds stable |
+| Final health / authenticated bookmarks requests | 200 / 200 |
+| Cleanup | Complete; no owned containers, networks or volumes left |
+
+Reloading the browser during the run reconnected to the same investigation.
+The durable ledger recorded exactly one run and three model reservations.
+The Linux fixture check and all 17 focused demo tests also passed on this host.
+HTTPS validation, HTTP-to-HTTPS redirection, Secure/HttpOnly/SameSite cookies,
+request-origin checks and the private API/file boundaries were checked externally.
+Ports 22, 8019 and 18097 were unreachable from the external test PC; 80 and 443
+were reachable. SSH remains available through authenticated Google IAP.
+
+Private acceptance record: `.local/cloud/live-result.json`, run
+`64ae2538b0164ce099255a6a22979922`. Application source commit:
+`a638b859fe92d1a88e50d963bccd34af7e383a27`.
+This confirms one hosted configuration recovery, not a success-rate guarantee
+or autonomous code repair. The shared demo quota includes this acceptance run.

@@ -21,6 +21,7 @@ and checks the recovery against real requests.
 <br>
 <br>
 
+[Try the live demo](https://aura.34.70.253.200.sslip.io/try) &nbsp;·&nbsp;
 [Interface](#the-interface) &nbsp;·&nbsp;
 [How it works](#how-it-works) &nbsp;·&nbsp;
 [Results](#measured-on-linkding) &nbsp;·&nbsp;
@@ -38,6 +39,11 @@ then check that real requests work again.
 
 For a supported code defect, it can prepare a patch and test it in an isolated
 container. You review the change and approve the specific version before deployment.
+
+The [live demo](https://aura.34.70.253.200.sslip.io/try) gives each run a fresh
+Linkding instance. Enter the supplied demo access code, then watch AURA investigate
+and restore an intentionally changed port. No API key or local setup is needed.
+[What the demo checks](docs/JUDGING_DEMO.md).
 
 ## The interface
 

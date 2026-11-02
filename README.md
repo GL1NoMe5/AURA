@@ -21,7 +21,7 @@ and checks the recovery against real requests.
 <br>
 <br>
 
-[Watch the film](https://gl1nome5.github.io/AURA/) &nbsp;·&nbsp;
+[Interface](#the-interface) &nbsp;·&nbsp;
 [How it works](#how-it-works) &nbsp;·&nbsp;
 [Results](#measured-on-linkding) &nbsp;·&nbsp;
 [Guardrails](#guardrails) &nbsp;·&nbsp;
@@ -39,32 +39,23 @@ then check that real requests work again.
 For a supported code defect, it can prepare a patch and test it in an isolated
 container. You review the change and approve the specific version before deployment.
 
+## The interface
+
+The workspace centers on a particle portrait that reflects the state of the
+selected container. Side drawers open when you connect an app, set recovery
+permissions, or read an incident report.
+
+![Two views of the AURA interface: My apps with opt-in recovery controls alongside the particle portrait, and Activity showing a verified Linkding recovery.](docs/readme/interface.png)
+
+![Particle portrait motion loop rendered in Three.js from Depth Anything V2 relief geometry.](docs/readme/portrait-motion.gif)
+
+<sub>Interface panels above show a saved recovery record in read-only review mode; the motion loop is captured from the Three.js particle scene.</sub>
+
 ## How it works
 
-<table>
-<tr>
-<td width="25%" valign="top">
-<sub>01</sub><br>
-<b>Observe</b>
-<p>Health checks, logs, memory and settings for each connected container.</p>
-</td>
-<td width="25%" valign="top">
-<sub>02</sub><br>
-<b>Investigate</b>
-<p>Meta Open 1026 specialists read the evidence after secrets are redacted locally.</p>
-</td>
-<td width="25%" valign="top">
-<sub>03</sub><br>
-<b>Act</b>
-<p>Restore saved settings if your policy allows it, or prepare a code change for testing and approval.</p>
-</td>
-<td width="25%" valign="top">
-<sub>04</sub><br>
-<b>Verify</b>
-<p>Requests to the running app decide whether the incident is resolved.</p>
-</td>
-</tr>
-</table>
+<img src="docs/readme/steps.svg" width="100%" alt="Four-step workflow: 01 Observe, 02 Investigate, 03 Act, 04 Verify.">
+
+<br>
 
 ![Docker observations feed relevant Meta Open 1026 specialists. A diagnosis can lead to policy-authorized recovery, or a code patch that is tested and approved before deployment. Both paths end with checks against the running application.](docs/readme/architecture.gif)
 
@@ -88,54 +79,65 @@ A historical Linkding defect buffered an entire file in memory. Under a 256 MiB
 limit, neither of two 500 MiB downloads completed. The AI proposal needed a human
 correction before AURA tested and deployed the approved patch.
 
-![Both 500 MiB downloads completed with matching hashes after the reviewed fix. Seven post-deployment memory samples stayed below the 256 MiB limit.](docs/presentation/media/verified-result.png)
+![Both 500 MiB downloads completed with matching hashes after the reviewed fix. Seven post-deployment memory samples stayed below the 256 MiB limit.](docs/readme/verified-result.png)
 
 <sub>Both routes returned the full file with matching hashes and no new OOM kills. The highest of seven memory samples was 175.8 MiB. <a href="docs/presentation/CASE_STUDY.md">Case study</a> · <a href="docs/presentation/case-data.json">Chart data</a></sub>
 
+<details>
+<summary>Reviewed patch and sandbox check</summary>
+
+<br>
+
+Before deployment, the isolated test runner (`--network none`, capabilities dropped,
+privilege escalation blocked) ran four gates on the candidate image:
+
+1. `1-collect` collected 51 existing Linkding asset tests (`exit_code=0`).
+2. `1-before` ran three new regression checks against the unpatched code and confirmed the expected failure (`exit_code=1`).
+3. `1-after` ran those three checks against the patched code (`exit_code=0`).
+4. `1-original-suite` re-ran all 51 existing Linkding asset tests (`exit_code=0`).
+
+The AI candidate first wrapped streams in a generator; a human edit switched both
+asset routes (`bookmarks/views/assets.py` and `bookmarks/api/routes.py`) to
+`FileResponse(file_obj)` so `close()` releases unconsumed file handles:
+
+```diff
+--- a/bookmarks/views/assets.py
++++ b/bookmarks/views/assets.py
+@@ -3,6 +3,7 @@
+ from django.conf import settings
+ from django.http import (
++    FileResponse,
+     Http404,
+     HttpResponse,
+ )
+@@ -28,10 +29,18 @@
++def _open_asset_file(asset):
++    filepath = os.path.join(settings.LD_ASSET_FOLDER, asset.file)
++    if not os.path.exists(filepath):
++        raise Http404("Asset file does not exist")
++    if asset.gzip:
++        return gzip.open(filepath, "rb")
++    return open(filepath, "rb")
++
+ def view(request, asset_id: int):
+     asset = access.asset_read(request, asset_id)
+-    content = _get_asset_content(asset)
+-
+-    response = HttpResponse(content, content_type=asset.content_type)
++    file_obj = _open_asset_file(asset)
++    response = FileResponse(file_obj, content_type=asset.content_type)
+     response["Content-Disposition"] = f'inline; filename="{asset.download_name}"'
+```
+
+</details>
+
 ## Guardrails
 
-<table>
-<tr>
-<td width="50%" valign="top">
-<b>Observation first</b>
-<p>New connections only watch. Each recovery permission is opt-in for that application.</p>
-</td>
-<td width="50%" valign="top">
-<b>Sealed test container</b>
-<p>Candidate patches run with no network, all Linux capabilities dropped and privilege escalation blocked.</p>
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-<b>Evidence on both sides of a fix</b>
-<p>A reproducing test must fail on the old code and pass on the new code. The application's existing tests must still pass.</p>
-</td>
-<td width="50%" valign="top">
-<b>Approval for one version</b>
-<p>You approve the specific tested patch. A different change needs its own approval.</p>
-</td>
-</tr>
-<tr>
-<td width="50%" valign="top">
-<b>Checked after deployment</b>
-<p>AURA repeats the real operation against the running app and can roll back the container it deployed.</p>
-</td>
-<td width="50%" valign="top">
-<b>Your apps keep running</b>
-<p>Stopping AURA leaves connected applications running.</p>
-</td>
-</tr>
-</table>
+<img src="docs/readme/guardrails.svg" width="100%" alt="Six operational guardrails: Observation first, Sealed test container, Evidence on both sides of a fix, Approval for one version, Checked after deployment, Your apps keep running.">
 
 ## Under the hood
 
-| Part | Implementation |
-| --- | --- |
-| Interface | React, TypeScript, Three.js, custom GLSL particles |
-| Controller | Python, FastAPI, Docker Engine |
-| Model | `meta-models/muse-spark-open-1026`, served by Baseten |
-| History and progress | SQLite, WebSocket, checksummed artifacts |
-| Code checks | Isolated container, reproducing test before and after the change, existing application tests |
+<img src="docs/readme/stack.svg" width="100%" alt="Technical stack: Interface, Controller, Model, Test container, Records.">
 
 <details>
 <summary>Operating limits</summary>

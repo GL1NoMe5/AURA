@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 196" width="1000" height="196" role="img" aria-label="Four-step workflow: 01 Observe, 02 Investigate, 03 Act, 04 Verify">
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d2633"/>
+      <stop offset="100%" stop-color="#091d27"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .num { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace; font-size: 12px; font-weight: 600; fill: #94d5c8; }
+    .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 17px; font-weight: 600; fill: #e3f0ee; }
+    .desc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13.5px; fill: #9bb4b8; }
+  </style>
+
+  <!-- Card 01 -->
+  <rect x="2" y="4" width="236" height="188" rx="16" fill="url(#cardBg)" stroke="#94d5c8" stroke-opacity="0.22" stroke-width="1"/>
+  <rect x="22" y="24" width="36" height="22" rx="11" fill="#143340" stroke="#94d5c8" stroke-opacity="0.28" stroke-width="1"/>
+  <text x="40" y="39" text-anchor="middle" class="num">01</text>
+  <text x="22" y="74" class="title">Observe</text>
+  <text x="22" y="102" class="desc">
+    <tspan x="22" dy="0">Health checks, container logs,</tspan>
+    <tspan x="22" dy="20">cgroup memory counters and</tspan>
+    <tspan x="22" dy="20">live settings.</tspan>
+  </text>
+
+  <line x1="238" y1="98" x2="256" y2="98" stroke="#94d5c8" stroke-opacity="0.32" stroke-width="1.5"/>
+
+  <!-- Card 02 -->
+  <rect x="256" y="4" width="236" height="188" rx="16" fill="url(#cardBg)" stroke="#94d5c8" stroke-opacity="0.22" stroke-width="1"/>
+  <rect x="276" y="24" width="36" height="22" rx="11" fill="#143340" stroke="#94d5c8" stroke-opacity="0.28" stroke-width="1"/>
+  <text x="294" y="39" text-anchor="middle" class="num">02</text>
+  <text x="276" y="74" class="title">Investigate</text>
+  <text x="276" y="102" class="desc">
+    <tspan x="276" dy="0">Secrets are redacted locally</tspan>
+    <tspan x="276" dy="20">before Meta Open 1026</tspan>
+    <tspan x="276" dy="20">specialists inspect the case.</tspan>
+  </text>
+
+  <line x1="492" y1="98" x2="510" y2="98" stroke="#94d5c8" stroke-opacity="0.32" stroke-width="1.5"/>
+
+  <!-- Card 03 -->
+  <rect x="510" y="4" width="236" height="188" rx="16" fill="url(#cardBg)" stroke="#94d5c8" stroke-opacity="0.22" stroke-width="1"/>
+  <rect x="530" y="24" width="36" height="22" rx="11" fill="#143340" stroke="#94d5c8" stroke-opacity="0.28" stroke-width="1"/>
+  <text x="548" y="39" text-anchor="middle" class="num">03</text>
+  <text x="530" y="74" class="title">Act</text>
+  <text x="530" y="102" class="desc">
+    <tspan x="530" dy="0">Restore saved settings if your</tspan>
+    <tspan x="530" dy="20">policy allows it, or test a</tspan>
+    <tspan x="530" dy="20">code patch for your approval.</tspan>
+  </text>
+
+  <line x1="746" y1="98" x2="762" y2="98" stroke="#94d5c8" stroke-opacity="0.32" stroke-width="1.5"/>
+
+  <!-- Card 04 -->
+  <rect x="762" y="4" width="236" height="188" rx="16" fill="url(#cardBg)" stroke="#94d5c8" stroke-opacity="0.22" stroke-width="1"/>
+  <rect x="782" y="24" width="36" height="22" rx="11" fill="#143340" stroke="#94d5c8" stroke-opacity="0.28" stroke-width="1"/>
+  <text x="800" y="39" text-anchor="middle" class="num">04</text>
+  <text x="782" y="74" class="title">Verify</text>
+  <text x="782" y="102" class="desc">
+    <tspan x="782" dy="0">Real requests against the</tspan>
+    <tspan x="782" dy="20">running app decide whether</tspan>
+    <tspan x="782" dy="20">the incident is resolved.</tspan>
+  </text>
+</svg>

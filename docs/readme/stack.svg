@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 246" width="1000" height="246" role="img" aria-label="AURA technical stack: Interface, Controller, Model, Test container, Records">
+  <defs>
+    <linearGradient id="sBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d2633"/>
+      <stop offset="100%" stop-color="#091d27"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .sk { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #94d5c8; }
+    .sv { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; fill: #dcebe9; }
+  </style>
+  <rect x="2" y="4" width="996" height="238" rx="16" fill="url(#sBg)" stroke="#94d5c8" stroke-opacity="0.22" stroke-width="1"/>
+  
+  <text x="28" y="39" class="sk">Interface</text>
+  <text x="196" y="39" class="sv">React 19, TypeScript, Three.js, custom GLSL shaders (120,000 relief particles)</text>
+  <line x1="28" y1="55" x2="972" y2="55" stroke="#94d5c8" stroke-opacity="0.11" stroke-width="1"/>
+  <text x="28" y="83" class="sk">Controller</text>
+  <text x="196" y="83" class="sv">Python, FastAPI, Docker Engine, Linux cgroup v2 counters, local secret redaction</text>
+  <line x1="28" y1="99" x2="972" y2="99" stroke="#94d5c8" stroke-opacity="0.11" stroke-width="1"/>
+  <text x="28" y="127" class="sk">Model</text>
+  <text x="196" y="127" class="sv">meta-models/muse-spark-open-1026 on Baseten, bounded specialist calls</text>
+  <line x1="28" y1="143" x2="972" y2="143" stroke="#94d5c8" stroke-opacity="0.11" stroke-width="1"/>
+  <text x="28" y="171" class="sk">Test container</text>
+  <text x="196" y="171" class="sv">Isolated container (--network none), reproducing test before and after, existing app suite</text>
+  <line x1="28" y1="187" x2="972" y2="187" stroke="#94d5c8" stroke-opacity="0.11" stroke-width="1"/>
+  <text x="28" y="215" class="sk">Records</text>
+  <text x="196" y="215" class="sv">SQLite incident history, WebSocket progress stream, SHA-256 checksummed artifacts</text>
+  
+</svg>

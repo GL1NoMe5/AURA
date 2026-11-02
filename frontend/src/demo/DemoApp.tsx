@@ -3,6 +3,7 @@ import ParticleCanvas from '../scene/ParticleCanvas';
 import PortraitSettings, { Icon } from '../PortraitSettings';
 import { SoundButton } from '../AmbientSound';
 import type { SceneStats } from '../scene/types';
+import { visibleRun } from './presentation';
 
 type Sample = { timestamp: string; healthy: boolean | null; memory_bytes: number | null;
   probes: {name: string; ok: boolean; status_code: number | null; duration_ms: number}[] };
@@ -48,7 +49,12 @@ export default function DemoApp() {
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
   const [stats, setStats] = useState<SceneStats | null>(null), [sceneError, setSceneError] = useState('');
   const submitting = useRef(false), requestKey = useRef<string | null>(null);
-  const run = state?.run;
+  const [reportId, setReportId] = useState<string | null>(null);
+  const latestRun = state?.run;
+  const run = visibleRun(latestRun, reportId);
+  useEffect(() => {
+    if (latestRun && !latestRun.finished_at) setReportId(latestRun.run_id);
+  }, [latestRun]);
   const running = !!run && !run.finished_at;
   const disrupted = !!run && !run.verified && !['preparing', 'checking_baseline', 'healthy'].includes(run.phase);
   const report = useCallback((s: SceneStats) => setStats(s), []);
@@ -137,7 +143,8 @@ export default function DemoApp() {
       {run?.cleanup_error && <p className="demo-message">{run.cleanup_error}</p>}
       {!connected && state && <p className="demo-message" role="status">Connection lost. The result below is the last received update.</p>}
       {error && <p className="demo-message" role="alert">{error}</p>}
-      {!state?.authenticated && state?.public_access ? <div className="demo-actions">
+      {!state ? <div className="demo-actions"><button className="start-button" disabled>Connecting…</button></div>
+      : !state.authenticated && state.public_access ? <div className="demo-actions">
         <button className="start-button" disabled={pending || !connected} onClick={() => void command('session', {code: ''})}>{pending ? 'Opening…' : 'Open demo'}</button>
         <small>No account or API key needed</small>
       </div> : !state?.authenticated ? <form className="demo-access" onSubmit={e => { e.preventDefault(); void command('session', {code}).then(ok => { if (ok) setCode(''); }); }}>
@@ -151,6 +158,9 @@ export default function DemoApp() {
         {running && <button className="text-button" disabled={pending} onClick={() => void command(`runs/${run.run_id}/cancel`)}>Stop this run</button>}
         {!state.provider_ready && <small>The model connection is currently unavailable.</small>}
       </div>}
+      {latestRun?.finished_at && <button className="text-button" onClick={() => setReportId(run ? null : latestRun.run_id)}>
+        {run ? 'Back to portrait' : 'View last result'}
+      </button>}
       <p className="demo-footnote">{run?.finished_at && run.cleanup_complete ? 'Run complete. The disposable test app has been removed.' : 'Real Docker requests and Meta Open 1026. Results are measured during your run.'}</p>
       <details className="demo-details"><summary>What happens in this test</summary>
         <p>The test deliberately changes Linkding’s port. AURA receives observations and a saved working configuration. It decides whether a permitted recovery applies.</p>

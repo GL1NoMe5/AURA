@@ -213,7 +213,10 @@ export function createScene(host: HTMLDivElement, labels: HTMLDivElement[], read
       }
     }
     uniforms.uTime.value = elapsed;
-    const portraitTarget = settings.mode === 'portrait' && portraitReady ? 1 : 0;
+    // Loading portrait geometry is not an incident. Do not reveal service
+    // streams while the image buffers are still downloading.
+    points.visible = portraitReady || settings.mode !== 'portrait';
+    const portraitTarget = settings.mode === 'portrait' ? 1 : 0;
     const step = settings.paused ? 0 : dt;
     uniforms.uPortrait.value = settings.reducedMotion ? portraitTarget : THREE.MathUtils.clamp(uniforms.uPortrait.value + Math.sign(portraitTarget - uniforms.uPortrait.value) * step / 2, 0, 1);
     uniforms.uMotion.value = settings.reducedMotion ? 0 : 1;

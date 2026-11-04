@@ -9,6 +9,8 @@ import noise from './psrdnoise3.glsl?raw';
 import vertex from './particles.vert.glsl?raw';
 import fragment from './particles.frag.glsl?raw';
 import type { SceneSettings, SceneStats } from './types';
+import { loadPortrait } from './portraitLoader';
+import portraitAsset from '../../public/portrait/stream.json';
 
 export const NODES: { name: string; detail: string; p: [number, number, number] }[] = [
   { name: 'Auth', detail: 'Identity', p: [-4.0, 0.9, 0.0] },
@@ -25,7 +27,8 @@ function randomSequence() {
 }
 
 export function createScene(host: HTMLDivElement, labels: HTMLDivElement[], read: () => SceneSettings,
-  report: (stats: SceneStats) => void, fail: (message: string) => void) {
+  report: (stats: SceneStats) => void, fail: (message: string) => void,
+  progress: (loaded: number, total: number) => void = () => {}) {
   const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: false, powerPreference: 'high-performance' });
   renderer.setClearColor(0x03080c, 1);
   renderer.setPixelRatio(1);
@@ -85,33 +88,24 @@ export function createScene(host: HTMLDivElement, labels: HTMLDivElement[], read
   geometry.setAttribute('aPortrait', new THREE.BufferAttribute(portraitPosition, 3));
   geometry.setAttribute('aPortraitData', new THREE.BufferAttribute(portraitData, 4));
   geometry.setAttribute('aPortraitColor', new THREE.BufferAttribute(portraitColor, 3));
-  let portraitReady = false, disposed = false;
+  let portraitReady = false, disposed = false, loadedCount = 0;
   const assetAbort = new AbortController();
-  void (async () => {
-    try {
-      const responses = await Promise.all(['particles.bin', 'colors.bin'].map(name =>
-        fetch(`/portrait/${name}`, { signal: assetAbort.signal, cache: 'no-cache' })));
-      if (responses.some(response => !response.ok)) throw new Error('Portrait asset could not be loaded.');
-      const [bytes, colorBytes] = await Promise.all(responses.map(response => response.arrayBuffer()));
-      if (bytes.byteLength !== COUNT * 10 * 4) throw new Error('Portrait asset has an invalid size.');
-      if (colorBytes.byteLength !== COUNT * 3 * 4) throw new Error('Portrait color asset has an invalid size.');
-      const data = new Float32Array(bytes);
-      const colors = new Float32Array(colorBytes);
-      if (!data.every(Number.isFinite)) throw new Error('Portrait asset contains invalid coordinates.');
-      if (!colors.every(value => Number.isFinite(value) && value >= 0 && value <= 1)) throw new Error('Portrait asset contains invalid colors.');
-      if (disposed) return;
-      portraitColor.set(colors);
-      for (let i = 0; i < COUNT; i++) {
-        portraitPosition.set(data.subarray(i * 10, i * 10 + 3), i * 3);
-        portraitData.set(data.subarray(i * 10 + 3, i * 10 + 7), i * 4);
-      }
-      flow.refreshPositions();
-      for (const name of ['aPortrait', 'aPortraitData', 'aPortraitColor']) geometry.getAttribute(name).needsUpdate = true;
-      portraitReady = true;
-    } catch (error) {
-      if (!disposed) fail(error instanceof Error ? error.message : 'Portrait loading failed.');
+  void loadPortrait(`/portrait/${portraitAsset.file}`, COUNT, assetAbort.signal, (data, offset) => {
+    if (disposed) return;
+    for (let i = 0; i < data.length / 10; i++) {
+      const target = offset + i;
+      portraitPosition.set(data.subarray(i * 10, i * 10 + 3), target * 3);
+      portraitData.set(data.subarray(i * 10 + 3, i * 10 + 7), target * 4);
+      portraitColor.set(data.subarray(i * 10 + 7, i * 10 + 10), target * 3);
     }
-  })();
+    loadedCount = offset + data.length / 10;
+    flow.refreshPositions();
+    for (const name of ['aPortrait', 'aPortraitData', 'aPortraitColor']) geometry.getAttribute(name).needsUpdate = true;
+    portraitReady = loadedCount === COUNT;
+    progress(loadedCount, COUNT);
+  }).catch(error => {
+    if (!disposed) fail(error instanceof Error ? error.message : 'Portrait loading failed.');
+  });
   const material = new THREE.ShaderMaterial({ uniforms, vertexShader: noise + '\n' + vertex, fragmentShader: fragment,
     transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, depthTest: false });
   const points = new THREE.Points(geometry, material);
@@ -192,7 +186,9 @@ export function createScene(host: HTMLDivElement, labels: HTMLDivElement[], read
     const cpuStart = performance.now();
     const measuredDelta = timer.getDelta();
     const dt = Math.min(measuredDelta, 0.1), settings = read();
-    const targetCount = normalizeParticleCount(settings.particleCount);
+    const requestedCount = normalizeParticleCount(settings.particleCount);
+    const targetCount = settings.mode === 'portrait' || uniforms.uPortrait.value > 0
+      ? Math.min(requestedCount, loadedCount) : requestedCount;
     visibleCount = settings.reducedMotion ? targetCount : THREE.MathUtils.lerp(visibleCount, targetCount, 1 - Math.exp(-12 * dt));
     if (Math.abs(visibleCount - targetCount) < 1) visibleCount = targetCount;
     const drawCount = Math.ceil(visibleCount);
@@ -215,7 +211,7 @@ export function createScene(host: HTMLDivElement, labels: HTMLDivElement[], read
     uniforms.uTime.value = elapsed;
     // Loading portrait geometry is not an incident. Do not reveal service
     // streams while the image buffers are still downloading.
-    points.visible = portraitReady || settings.mode !== 'portrait';
+    points.visible = loadedCount > 0 || settings.mode !== 'portrait';
     const portraitTarget = settings.mode === 'portrait' ? 1 : 0;
     const step = settings.paused ? 0 : dt;
     uniforms.uPortrait.value = settings.reducedMotion ? portraitTarget : THREE.MathUtils.clamp(uniforms.uPortrait.value + Math.sign(portraitTarget - uniforms.uPortrait.value) * step / 2, 0, 1);

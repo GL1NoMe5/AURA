@@ -95,6 +95,15 @@ reload. Public DNS must point to the VM, with ports 80 and 443 reachable. Keep
 the original `Host`. No permissive CORS or forwarded-host trust is needed.
 See [Caddy's official HTTPS proxy guide](https://caddyserver.com/docs/quick-starts/reverse-proxy).
 
+The frontend build runs `tools/demo/pack_portrait.mjs` to derive a compressed,
+fingerprinted portrait from the two original binary assets. It preserves every
+rendered float and particle order. The browser decodes and displays complete
+batches during download, shows actual loading progress, and offers a retry if
+the transfer stalls for 30 seconds. The supplied Caddy configuration compresses
+text assets and caches successful fingerprinted portrait responses; API responses
+remain uncached. Keep old fingerprinted assets during deployments so already-open
+pages can finish loading.
+
 The backend validates the configured public host even for localhost requests.
 After configuring a public domain, a local health check therefore uses:
 

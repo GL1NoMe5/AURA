@@ -4,6 +4,12 @@ demo.example.com {
     request_body {
         max_size 1KB
     }
+    encode zstd gzip
+    @portrait path_regexp ^/portrait/portrait-[a-f0-9]{16}\.bin$
+    header @portrait {
+        Cache-Control "public, max-age=31536000, immutable"
+        match status 200
+    }
     reverse_proxy 127.0.0.1:8019
     header Strict-Transport-Security "max-age=86400"
 }

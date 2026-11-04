@@ -47,7 +47,7 @@ export default function DemoApp() {
   const [paused, setPaused] = useState(false), [settings, setSettings] = useState(false);
   const [quality, setQuality] = useState<'full' | 'balanced'>('balanced'), [count, setCount] = useState(60000);
   const [reduced, setReduced] = useState(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const [stats, setStats] = useState<SceneStats | null>(null), [sceneError, setSceneError] = useState('');
+  const [stats, setStats] = useState<SceneStats | null>(null);
   const submitting = useRef(false), requestKey = useRef<string | null>(null);
   const [reportId, setReportId] = useState<string | null>(null);
   const latestRun = state?.run;
@@ -58,7 +58,6 @@ export default function DemoApp() {
   const running = !!run && !run.finished_at;
   const disrupted = !!run && !run.verified && !['preparing', 'checking_baseline', 'healthy'].includes(run.phase);
   const report = useCallback((s: SceneStats) => setStats(s), []);
-  const sceneFailed = useCallback((message: string) => setSceneError(message), []);
   const refresh = useCallback(async (signal?: AbortSignal) => {
     const response = await fetch('/api/demo/status', {signal, cache: 'no-store'});
     if (!response.ok) throw new Error('Live demonstration is unavailable.');
@@ -119,7 +118,7 @@ export default function DemoApp() {
   return <main className={`aura demo-page ${disrupted ? 'streams' : 'portrait'} ${reduced ? 'reduced-motion' : ''}`}>
     <ParticleCanvas settings={{mode: disrupted ? 'streams' : 'portrait', paused, reducedMotion: reduced,
       quality, resetId: 0, particleCount: count, activeNode: running ? ({runtime: 1, configuration: 3, synthesis: 4}[agent ?? ''] ?? 0) : -1}}
-      onStats={report} onError={sceneFailed} annotations={annotations}/>
+      onStats={report} annotations={annotations}/>
     <div className="atmosphere" aria-hidden="true"/>
     <header className="masthead"><a className="identity" href="https://github.com/GL1NoMe5/AURA" target="_blank" rel="noreferrer">AURA</a>
       <div className="demo-heading"><span className={`demo-led ${connected ? 'on' : ''}`}/>{connected ? 'Live demonstration' : 'Connecting'}<a href="https://gl1nome5.github.io/AURA/" target="_blank" rel="noreferrer">Watch the film</a></div>
@@ -171,7 +170,6 @@ export default function DemoApp() {
         {run?.agents?.filter(a => a.type === 'agent_finished').map((a, i) => <p key={i}><strong>{a.agent}</strong><br/>{a.summary}</p>)}
       </details>
     </section>
-    {sceneError && <p className="demo-scene-error" role="status">Portrait unavailable. You can still run the recovery.</p>}
     <footer className="bottom-bar demo-bottom"><span>Move to stir · Hold to gather</span><div className="transport"><SoundButton/>
       <button className="icon-button" aria-label={paused ? 'Resume portrait animation' : 'Pause portrait animation'} aria-pressed={paused} data-tooltip="Only the portrait pauses. The recovery continues." onClick={() => setPaused(p => !p)}><Icon kind={paused ? 'play' : 'pause'}/></button>
       <button className="icon-button" aria-label="Portrait settings" aria-expanded={settings} onClick={() => setSettings(s => !s)}><Icon kind="sliders"/></button>
